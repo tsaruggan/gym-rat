@@ -1,0 +1,9 @@
+{
+    "name": "Lift Monkey",
+    "short_name": "LiftMonkey",
+    "theme_color": "#FFFFFF",
+    "background_color": "#FFFFFF",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait"
+}
