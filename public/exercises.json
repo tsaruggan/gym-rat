@@ -1,0 +1,240 @@
+[
+  {
+    "name": "Lateral Pulldowns",
+    "date": "2024-11-05T12:12:27Z",
+    "sets": [
+      {
+        "weight": 75,
+        "reps": 10,
+        "warmUp": true
+      },
+      {
+        "weight": 85,
+        "reps": 8,
+        "warmUp": true
+      },
+      {
+        "weight": 95,
+        "reps": 6,
+        "warmUp": false
+      },
+      {
+        "weight": 95,
+        "reps": 6,
+        "warmUp": false
+      },
+      {
+        "weight": 95,
+        "reps": 6,
+        "warmUp": false
+      }
+    ]
+  },
+  {
+    "name": "Lateral Pulldowns",
+    "date": "2024-11-01T19:19:15Z",
+    "sets": [
+      {
+        "weight": 80,
+        "reps": 10,
+        "warmUp": true
+      },
+      {
+        "weight": 90,
+        "reps": 8,
+        "warmUp": true
+      },
+      {
+        "weight": 100,
+        "reps": 6,
+        "warmUp": false
+      },
+      {
+        "weight": 100,
+        "reps": 6,
+        "warmUp": false
+      },
+      {
+        "weight": 100,
+        "reps": 6,
+        "warmUp": false
+      }
+    ]
+  },
+  {
+    "name": "Lateral Pulldowns",
+    "date": "2024-11-12T09:20:00Z",
+    "sets": [
+      {
+        "weight": 80,
+        "reps": 10,
+        "warmUp": true
+      },
+      {
+        "weight": 90,
+        "reps": 8,
+        "warmUp": true
+      },
+      {
+        "weight": 100,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 100,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 100,
+        "reps": 8,
+        "warmUp": false
+      }
+    ]
+  },
+  {
+    "name": "Dumbell Bench Press",
+    "date": "2024-11-22T22:08:39Z",
+    "sets": [
+      {
+        "weight": 50,
+        "reps": 12,
+        "warmUp": true
+      },
+      {
+        "weight": 65,
+        "reps": 10,
+        "warmUp": true
+      },
+      {
+        "weight": 80,
+        "reps": 8,
+        "warmUp": true
+      },
+      {
+        "weight": 90,
+        "reps": 6,
+        "warmUp": false
+      },
+      {
+        "weight": 100,
+        "reps": 6,
+        "warmUp": false
+      },
+      {
+        "weight": 100,
+        "reps": 6,
+        "warmUp": false
+      }
+    ]
+  },
+  {
+    "name": "Dumbell Shoulder Press",
+    "date": "2024-11-11T03:02:15Z",
+    "sets": [
+      {
+        "weight": 60,
+        "reps": 6,
+        "warmUp": false
+      },
+      {
+        "weight": 65,
+        "reps": 6,
+        "warmUp": false
+      },
+      {
+        "weight": 70,
+        "reps": 6,
+        "warmUp": false
+      },
+      {
+        "weight": 70,
+        "reps": 5,
+        "warmUp": false
+      }
+    ]
+  },
+  {
+    "name": "Chest Flys",
+    "date": "2024-11-05T03:59:40Z",
+    "sets": [
+      {
+        "weight": 70,
+        "reps": 10,
+        "warmUp": false
+      },
+      {
+        "weight": 70,
+        "reps": 10,
+        "warmUp": false
+      },
+      {
+        "weight": 70,
+        "reps": 10,
+        "warmUp": false
+      },
+      {
+        "weight": 70,
+        "reps": 10,
+        "warmUp": false
+      },
+      {
+        "weight": 70,
+        "reps": 10,
+        "warmUp": false
+      }
+    ]
+  },
+  {
+    "name": "Chest Flys",
+    "date": "2024-11-21T20:25:01Z",
+    "sets": [
+      {
+        "weight": 55,
+        "reps": 10,
+        "warmUp": false
+      },
+      {
+        "weight": 55,
+        "reps": 10,
+        "warmUp": false
+      },
+      {
+        "weight": 55,
+        "reps": 10,
+        "warmUp": false
+      },
+      {
+        "weight": 55,
+        "reps": 10,
+        "warmUp": false
+      },
+      {
+        "weight": 55,
+        "reps": 10,
+        "warmUp": false
+      }
+    ]
+  },
+  {
+    "name": "Squats",
+    "date": "2024-11-19T00:07:43Z",
+    "sets": [
+      {
+        "weight": 95,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 95,
+        "reps": 7,
+        "warmUp": false
+      },
+      {
+        "weight": 85,
+        "reps": 8,
+        "warmUp": false
+      }
+    ]
+  }
+]
