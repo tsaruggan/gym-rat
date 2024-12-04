@@ -12,8 +12,11 @@ export default function Home() {
         <title>Lift Monkey</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div className={`${styles.page}`}>
+      <div className={styles.page}>
         <main className={styles.main}>
+        <a href="https://www.google.com">
+          <div id="dashed" className={styles.createNewExercise}>Create & log a new exercise...</div>
+        </a>
           <ExercisesTable data={data} />
         </main>
       </div>

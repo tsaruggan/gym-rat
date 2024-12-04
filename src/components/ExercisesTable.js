@@ -147,7 +147,7 @@ function ExercisesTable({ data }) {
                     sortable
                     frozen
                     alignFrozen="left"
-                    style={{ minWidth: '216px'}}
+                    style={{ minWidth: '216px', padding: '12px' }}
                 />
                 <Column
                     header="Weight"
