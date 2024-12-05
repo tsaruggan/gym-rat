@@ -15,7 +15,7 @@
   flex-direction: column;
   grid-row-start: 2;
   width: 100%;
-  gap: 12px;
+  gap: 36px;
 }
 
 .createNewExercise {

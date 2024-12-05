@@ -4,7 +4,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 
-function ExercisesTable({ data }) {
+function ExercisesDisplay({ data }) {
     const [exerciseData, setExerciseData] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -92,8 +92,7 @@ function ExercisesTable({ data }) {
     };
     
     const formatDate = (date) => {
-        const formattedDate = new Date(date).toISOString().split('T')[0];
-        return formattedDate;
+        return new Date(date).toLocaleDateString('en-CA');
     }
 
     const renderSets = (rowData) => {
@@ -135,7 +134,7 @@ function ExercisesTable({ data }) {
                 sortOrder={-1}
                 paginator
                 rows={8}
-                paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+                paginatorTemplate="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                 currentPageReportTemplate="{currentPage} / {totalPages}"
                 globalFilter={searchQuery}
                 header={header}
@@ -183,4 +182,4 @@ function ExercisesTable({ data }) {
     );
 }
 
-export default ExercisesTable;
+export default ExercisesDisplay;
