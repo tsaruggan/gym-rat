@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-
+import Link from 'next/link';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
+import styles from "@/styles/Home.module.css";
 
 function ExercisesDisplay({ data }) {
     const [exerciseData, setExerciseData] = useState([]);
@@ -122,8 +123,21 @@ function ExercisesDisplay({ data }) {
     }
     const emptyMessage = renderEmptyMessage();
 
+    const renderExerciseName = (rowData) => {
+        const exerciseName = rowData.name;
+        return (
+            <Link 
+                href={`/${exerciseName}`} 
+                className={styles.exerciseLink}
+                scroll={true}
+            >
+                {exerciseName}
+            </Link>
+        );
+    }
+
     return (
-        <div>
+        <div className={styles.exercisesDisplay}>
             <DataTable
                 value={exerciseData}
                 stripedRows
@@ -141,8 +155,9 @@ function ExercisesDisplay({ data }) {
                 emptyMessage={emptyMessage}
             >
                 <Column
-                    field="name"
                     header="Exercise"
+                    sortField="name"
+                    body={renderExerciseName}
                     sortable
                     frozen
                     alignFrozen="left"

@@ -4,6 +4,7 @@ import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Paginator } from 'primereact/paginator';
 
 import BasicLogCard from "./BasicLogCard";
+import styles from "@/styles/Home.module.css";
 
 function WorkoutsDisplay({ data }) {
     const [workoutData, setWorkoutData] = useState([]);
@@ -65,7 +66,7 @@ function WorkoutsDisplay({ data }) {
     }
 
     return (
-        <div>
+        <div className={styles.workoutsDisplay}>
             <Accordion style={{ display: 'flex', flexDirection: 'column', gap: '4px'}}>
                 {paginatedWorkouts.map((workout, index) => (
                     <AccordionTab 

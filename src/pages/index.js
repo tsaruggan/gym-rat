@@ -17,12 +17,12 @@ export default function Home() {
       </Head>
       <div className={styles.page}>
         <main className={styles.main}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div className={styles.homePageSection}>
             <h2>Exercises</h2>
-            <div id="dashed" className={styles.createNewExercise}>Create & log a new exercise...</div>
+            <div className={styles.createNewExercise}>Create & log a new exercise...</div>
             <ExercisesDisplay data={data} />
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div className={styles.homePageSection}>
             <h2>Workouts</h2>
             <WorkoutsDisplay data={data} />
           </div>

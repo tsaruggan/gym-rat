@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-items: center;
-  min-height: 100svh;
+  /* min-height: 100svh; */
   padding: 12px;
   gap: 64px;
   max-width: 800px;
@@ -29,10 +29,32 @@
   color: rgba(0, 0, 0, 0.6);
   background-color: rgba(17, 116, 192, 0.05);
   cursor: pointer;
+
+  border-style: dashed;
+  border-width: 2px;
+  border-radius: 8px;
 }
 
 .createNewExercise:hover {
+  border-style: solid;
   color: rgba(0, 0, 0);
   background-color: rgba(17, 116, 192, 0.1);
-  cursor: pointer;
+  font-weight: bold;
+}
+
+.homePageSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.exerciseLink {
+  text-decoration: underline dashed;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.exerciseLink:hover {
+  text-decoration: underline wavy;
+  font-weight: bold;
 }
