@@ -6,6 +6,8 @@ import { GeistMono } from "geist/font/mono";
 import { PrimeReactProvider } from 'primereact/api';
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/nano/theme.css";
+import 'primeicons/primeicons.css';
+
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';

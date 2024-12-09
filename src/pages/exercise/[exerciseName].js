@@ -7,9 +7,9 @@ export default function ExercisePage() {
 
     return (
         <div className={styles.page}>
-            {/* <main className={styles.main}> */}
+            <main className={styles.main}>
                 <p>{exerciseName}</p>
-            {/* </main> */}
+            </main>
         </div>
     );
 }

@@ -1,11 +1,10 @@
 import React from 'react';
-
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import Link from 'next/link';
 import styles from "@/styles/Home.module.css";
 
-function BasicLogCard({ exerciseLog }) {
+function BasicLog({ exerciseLog }) {
     const formatTime = (dateString) => {
         const date = new Date(dateString);
         return new Intl.DateTimeFormat('en-US', {
@@ -26,7 +25,7 @@ function BasicLogCard({ exerciseLog }) {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <span>
-                <Link href={`/${exerciseLog.name}`} className={styles.exerciseLink}>{exerciseLog.name}</Link>
+                <Link href={`/exercise/${exerciseLog.name}`} className={styles.exerciseLink}>{exerciseLog.name}</Link>
                 <span> @ {formatTime(exerciseLog.date)}</span>
             </span>
             
@@ -42,4 +41,4 @@ function BasicLogCard({ exerciseLog }) {
     );
 }
 
-export default BasicLogCard;
+export default BasicLog;

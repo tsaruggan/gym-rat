@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Paginator } from 'primereact/paginator';
-
-import BasicLogCard from "./BasicLogCard";
+import BasicLog from "./BasicLog";
 import styles from "@/styles/Home.module.css";
 
 function WorkoutsDisplay({ data }) {
@@ -37,15 +35,11 @@ function WorkoutsDisplay({ data }) {
     
     const [currentPage, setCurrentPage] = useState(0);
     const pageSize = 8;
-    
     const paginatedWorkouts = workoutData.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
-
     const paginatorTemplate = {
         layout: 'FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
         CurrentPageReport: (options) => `${options.currentPage} / ${options.totalPages}`,
     };
-
-    
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -75,7 +69,7 @@ function WorkoutsDisplay({ data }) {
                     >
                         <div style={{display: 'flex', flexDirection: 'column', gap: '12px', padding: '12px'}}>
                             {workout.exercises.map((exercise, _) => (
-                                <BasicLogCard exerciseLog={exercise} />
+                                <BasicLog exerciseLog={exercise} />
                             ))}
                         </div>
                         

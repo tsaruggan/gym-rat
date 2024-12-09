@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
-
 import data from '../../public/exercises.json';
-
 import ExercisesDisplay from '../components/ExercisesDisplay';
 import WorkoutsDisplay from "../components/WorkoutsDisplay";
+import Link from "next/link";
 
 export default function Home() {
 
@@ -19,7 +18,11 @@ export default function Home() {
         <main className={styles.main}>
           <div className={styles.homePageSection}>
             <h2>Exercises</h2>
-            <div className={styles.createNewExercise}>Create & log a new exercise...</div>
+
+            <Link href="/exercise" >
+              <div className={styles.createNewExercise}>Create & log a new exercise...</div>
+            </Link>
+            
             <ExercisesDisplay data={data} />
           </div>
           <div className={styles.homePageSection}>

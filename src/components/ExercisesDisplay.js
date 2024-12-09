@@ -127,7 +127,7 @@ function ExercisesDisplay({ data }) {
         const exerciseName = rowData.name;
         return (
             <Link 
-                href={`/${exerciseName}`} 
+                href={`/exercise/${exerciseName}`} 
                 className={styles.exerciseLink}
                 scroll={true}
             >

@@ -18,6 +18,12 @@
   gap: 36px;
 }
 
+@media (min-width: 800px) {
+  .page {
+    margin-top: 48px;
+  }
+}
+
 .createNewExercise {
   display: flex;
   align-items: center;
@@ -57,4 +63,75 @@
 .exerciseLink:hover {
   text-decoration: underline wavy;
   font-weight: bold;
+}
+
+.warmUpToggle, .warmUpToggle:focus  {
+  background: none;
+  cursor: pointer;
+  padding: 0; 
+  width: auto;
+  height: 2em;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1em;
+  box-shadow: none;
+}
+
+.warmUpToggle:hover {
+  border: 2px solid rgba(0, 200, 255, 1) !important;
+  background-color: rgba(0, 200, 255, 0.2) !important;
+}
+
+.trashButton {
+  background-color: transparent;
+  color: rgb(255, 55, 0);
+  cursor: pointer;
+  width: auto;
+  height: 2em;
+  aspect-ratio: 1;
+  box-shadow: none;
+}
+
+.trashButton:hover {
+  background-color: rgb(255, 55, 0, 0.4);
+}
+
+.addSetButton, .logExerciseButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
+  height: 2em;
+  width: 100%;
+  box-shadow: none;
+  padding: 16px;
+}
+
+.addSetButton {
+  border: dashed 2px black;
+  background-color: transparent;
+  color: black;
+}
+
+.addSetButton:hover {
+  background-color: lightblue;
+  border: solid 2px black;
+  font-weight: bold;
+  color: palevioletred;
+}
+
+.logExerciseButton {
+  border: solid 2px black;
+  background-color: lightseagreen;
+  color: white;
+  font-weight: bold;
+}
+
+.logExerciseButton:hover {
+  background-color: indigo;
+  border: solid 2px black;
+  font-weight: bolder;
+  color: greenyellow;
 }
