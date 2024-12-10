@@ -86,6 +86,7 @@
 
 .trashButton {
   background-color: transparent;
+  border: 1px solid rgb(255, 55, 0);
   color: rgb(255, 55, 0);
   cursor: pointer;
   width: auto;
@@ -96,6 +97,13 @@
 
 .trashButton:hover {
   background-color: rgb(255, 55, 0, 0.4);
+  border: 2px solid rgb(255, 55, 0) !important;
+}
+
+.trashButton:disabled {
+  background-color: rgba(255, 200, 185, 0.4);
+  color: gray;
+  border-color: gray;
 }
 
 .addSetButton, .logExerciseButton {
@@ -134,4 +142,11 @@
   border: solid 2px black;
   font-weight: bolder;
   color: greenyellow;
+}
+
+.logExerciseButton:disabled {
+  background-color: rgb(148, 170, 168, 0.5);
+  color: gray;
+  border: solid 1px gray;
+  font-weight: normal;
 }

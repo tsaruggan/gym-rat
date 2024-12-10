@@ -1,11 +1,11 @@
 import styles from "@/styles/Home.module.css";
 import React, { useState, useEffect } from "react";
-import { InputText } from "primereact/inputtext";
 
-import { InputSwitch } from 'primereact/inputswitch';
+import { InputText } from "primereact/inputtext";
 import { InputNumber } from 'primereact/inputnumber';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
+import { Calendar } from "primereact/calendar";
 
 export default function NewExercisePage() {
     const [exerciseName, setExerciseName] = useState('');
@@ -14,6 +14,7 @@ export default function NewExercisePage() {
         { weight: 55, reps: 8, warmUp: false }, 
         { weight: 55, reps: 8, warmUp: false }
     ]);
+    const [date, setDate] = useState(new Date());
 
     const renderSet = (index) => {
         const set = sets[index];
@@ -55,7 +56,7 @@ export default function NewExercisePage() {
                     <Button 
                         onClick={() => deleteSet(index)} 
                         icon="pi pi-trash" 
-                        className={`${styles.trashButton} p-button-danger`}
+                        className={`${styles.trashButton}`}
                         disabled={sets.length <= 1}
                     />
                 </div>
@@ -65,11 +66,10 @@ export default function NewExercisePage() {
     }
 
     const updateSet = (index, key, value) => {
-        setSets((prevSets) => {
-            const newSets = [...prevSets];
-            newSets[index] = { ...newSets[index], [key]: value };
-            return newSets;
-        });
+        const updatedSets = sets.map((set, i) =>
+            i === index ? { ...set, [key]: value } : set
+        );
+        setSets(updatedSets);
     };
 
     const deleteSet = (index) => {
@@ -83,8 +83,29 @@ export default function NewExercisePage() {
         ]);
     };
 
+    const validateForm = () => {
+        const invalidName = exerciseName.trim() === "";
+        if (invalidName) {
+            return false;
+        }
+    
+        const hasWorkingSet = sets.some(set => !set.warmUp);
+        if (!hasWorkingSet) {
+            return false;
+        }
+    
+        const allValidSets = sets.every(set => set.weight > 0 && set.reps >= 1);
+        if (!allValidSets) {
+            return false;
+        }
+    
+        return true;
+    };
+    
     const logExercise = () => {
-
+        if (validateForm()) {
+            console.log(exerciseName, sets, date.toISOString());
+        }
     };
 
     return (
@@ -100,12 +121,25 @@ export default function NewExercisePage() {
                             style={{ padding: '4px' }}
                         />
                     </div>
+
                     {sets.map((_, index) => (
                         renderSet(index)
                     ))}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', paddingTop: '16px' }} >
+
+                    <Calendar 
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                        dateFormat="yy-mm-dd"
+                        showTime 
+                        hourFormat="12"
+                        inputStyle={{ padding: '4px', height: '2em', textAlign: 'center' }}
+                        panelStyle={{ textAlign: 'left', justifyItems: 'stretch', padding: '12px'}}
+                        touchUI
+                    />
+                    
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }} >
                         <Button className={styles.addSetButton} onClick={() =>  addSet()}>Add Set</Button>
-                        <Button className={styles.logExerciseButton}>Log Exercise</Button>
+                        <Button className={styles.logExerciseButton} disabled={!validateForm()} onClick={() => logExercise()}>Log Exercise</Button>
                     </div>
                     
                 </div> 
