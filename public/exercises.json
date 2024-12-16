@@ -236,5 +236,129 @@
         "warmUp": false
       }
     ]
+  },
+  {
+    "name": "Lateral Pulldowns",
+    "date": "2024-12-05T09:20:00Z",
+    "sets": [
+      {
+        "weight": 80,
+        "reps": 10,
+        "warmUp": true
+      },
+      {
+        "weight": 90,
+        "reps": 8,
+        "warmUp": true
+      },
+      {
+        "weight": 100,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 100,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 100,
+        "reps": 8,
+        "warmUp": false
+      }
+    ]
+  },
+  {
+    "name": "Lateral Pulldowns",
+    "date": "2024-12-07T09:20:00Z",
+    "sets": [
+      {
+        "weight": 90,
+        "reps": 10,
+        "warmUp": true
+      },
+      {
+        "weight": 100,
+        "reps": 8,
+        "warmUp": true
+      },
+      {
+        "weight": 110,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 110,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 110,
+        "reps": 8,
+        "warmUp": false
+      }
+    ]
+  },
+  {
+    "name": "Lateral Pulldowns",
+    "date": "2024-12-10T09:20:00Z",
+    "sets": [
+      {
+        "weight": 90,
+        "reps": 10,
+        "warmUp": true
+      },
+      {
+        "weight": 100,
+        "reps": 8,
+        "warmUp": true
+      },
+      {
+        "weight": 110,
+        "reps": 10,
+        "warmUp": false
+      },
+      {
+        "weight": 110,
+        "reps": 10,
+        "warmUp": false
+      },
+      {
+        "weight": 110,
+        "reps": 8,
+        "warmUp": false
+      }
+    ]
+  },
+  {
+    "name": "Lateral Pulldowns",
+    "date": "2024-12-15T09:20:00Z",
+    "sets": [
+      {
+        "weight": 90,
+        "reps": 10,
+        "warmUp": true
+      },
+      {
+        "weight": 100,
+        "reps": 8,
+        "warmUp": true
+      },
+      {
+        "weight": 110,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 110,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 110,
+        "reps": 8,
+        "warmUp": false
+      }
+    ]
   }
 ]

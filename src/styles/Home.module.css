@@ -92,7 +92,6 @@
   width: auto;
   height: 2em;
   aspect-ratio: 1;
-  box-shadow: none;
 }
 
 .trashButton:hover {
@@ -149,4 +148,24 @@
   color: gray;
   border: solid 1px gray;
   font-weight: normal;
+}
+
+.dateTimePickerInput {
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  border: solid 1px black;
+  padding: 4px;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+}
+
+.dateTimePickerInput:hover {
+  border: solid 2px black;
+  cursor: pointer;
 }
