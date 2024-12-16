@@ -110,10 +110,10 @@
   align-items: center;
   justify-content: center;
   text-align: center; 
-  height: 2em;
   width: 100%;
   box-shadow: none;
   padding: 16px;
+  height: 36px;
 }
 
 .addSetButton {
@@ -156,7 +156,7 @@
   font-size: inherit;
   border: solid 1px black;
   padding: 4px;
-  height: 2em;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,6 +166,7 @@
 }
 
 .dateTimePickerInput:hover {
-  border: solid 2px black;
+  color: navy;
+  border: solid 2px navy;
   cursor: pointer;
 }

@@ -1,14 +1,15 @@
+import React, { useState, useEffect } from "react";
 import { useRouter } from 'next/router';
 import styles from "@/styles/Home.module.css";
+import ExerciseHistoryDisplay from "@/components/ExerciseHistoryDisplay";
 import LogExerciseForm from '@/components/LogExerciseForm';
 import data from '../../../public/exercises.json';
-import React, { useState, useEffect } from "react";
  
 export default function ExercisePage() {
     const router = useRouter();
     const { exerciseName } = router.query;
     const [exerciseHistory, setExerciseHistory] = useState([]);
-    const [exerciseWasLogged, setExerciseWasLogged] = useState(false);
+    const [loggedSuccessfully, setLoggedSuccessfully] = useState(false);
 
     useEffect(() => {
         if (exerciseName && data) {
@@ -24,12 +25,12 @@ export default function ExercisePage() {
 
     const onLog = (exercise) => {
         console.log(exercise);
-        setExerciseWasLogged(true);
+        setLoggedSuccessfully(true);
     }
 
     const renderLogExerciseForm = () => {
         return (
-            <div style={{ width: '100%', maxWidth: '600px' }}>
+            <div style={{ width: '100%', maxWidth: '400px' }}>
                 <LogExerciseForm 
                     initialExerciseName={exerciseName} 
                     hideExerciseName 
@@ -60,18 +61,18 @@ export default function ExercisePage() {
                                 display: 'flex', 
                                 justifyContent: 'space-around', 
                                 padding: '24px',
-                                border: exerciseWasLogged ? 'solid 2px rgb(32, 178, 170)' : 'dashed 2px black',
-                                backgroundColor: exerciseWasLogged ? 'rgba(32, 178, 170, 0.1)' : 'transparent'
+                                border: loggedSuccessfully ? 'solid 2px rgb(32, 178, 170)' : 'dashed 2px black',
+                                backgroundColor: loggedSuccessfully ? 'rgba(32, 178, 170, 0.1)' : 'transparent'
                             }}
                         >
-                            {exerciseWasLogged ? renderLoggedSuccessfullyMessage() : renderLogExerciseForm()}
+                            {loggedSuccessfully ? renderLoggedSuccessfullyMessage() : renderLogExerciseForm()}
                         </div>
                     )}
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                     <h2>History</h2>
-                    <p>History of previous exercise logs here...</p>
+                    <ExerciseHistoryDisplay history={exerciseHistory}/>
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>

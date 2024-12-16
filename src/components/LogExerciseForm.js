@@ -153,9 +153,9 @@ const LogExerciseForm = ({ hideExerciseName = false, initialExerciseName = '', i
 
             {sets.map((_, index) => renderSet(index))}
 
-            <input type="datetime-local" value={date} onChange={(e) => setDate(e.target.value)} className={styles.dateTimePickerInput} />
-
             <Button className={styles.addSetButton} onClick={addSet}>Add Set</Button>
+
+            <input type="datetime-local" value={date} onChange={(e) => setDate(e.target.value)} className={styles.dateTimePickerInput} />
 
             <Button className={styles.logExerciseButton} disabled={!validateForm()} onClick={logExercise}>Log Exercise</Button>
         </div>
