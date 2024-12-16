@@ -13,12 +13,8 @@ export default function ExercisePage() {
 
     useEffect(() => {
         if (exerciseName && data) {
-            // filter exercises
             const filteredExercises = data.filter(exercise => exercise.name == exerciseName);
-
-            // sort exercises by date
             const sortedExercises = filteredExercises.sort((a, b) => new Date(b.date) - new Date(a.date));
-
             setExerciseHistory(sortedExercises);
         }
     }, [exerciseName, data]);
@@ -30,20 +26,22 @@ export default function ExercisePage() {
 
     const renderLogExerciseForm = () => {
         return (
-            <div style={{ width: '100%', maxWidth: '400px' }}>
-                <LogExerciseForm 
-                    initialExerciseName={exerciseName} 
-                    hideExerciseName 
-                    initialSets={exerciseHistory[0].sets} 
-                    onLog={onLog}
-                />
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'space-around', padding: '24px', border: 'dashed 2px black' }}>
+                <div style={{ width: '100%', maxWidth: '400px' }}>
+                    <LogExerciseForm 
+                        initialExerciseName={exerciseName} 
+                        hideExerciseName 
+                        initialSets={exerciseHistory[0].sets} 
+                        onLog={onLog}
+                    />
+                </div>
             </div>
         );
     }
 
     const renderLoggedSuccessfullyMessage = () => {
         return (
-            <div style={{ textAlign: 'center', color: 'rgb(32, 178, 170)'}} >
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'space-around', padding: '24px', textAlign: 'center', color: 'rgb(32, 178, 170)', backgroundColor: 'rgb(32, 178, 170, 0.1)', border: 'solid 1px rgb(32, 178, 170)'}} >
                 <p>Exercise was logged successfully!</p>
             </div>
         );
@@ -54,20 +52,9 @@ export default function ExercisePage() {
             <main className={styles.main} >
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                     <h1>{exerciseName}</h1>
-                    {exerciseHistory && exerciseHistory.length > 0 && (
-                        <div 
-                            style={{ 
-                                width: '100%',  
-                                display: 'flex', 
-                                justifyContent: 'space-around', 
-                                padding: '24px',
-                                border: loggedSuccessfully ? 'solid 2px rgb(32, 178, 170)' : 'dashed 2px black',
-                                backgroundColor: loggedSuccessfully ? 'rgba(32, 178, 170, 0.1)' : 'transparent'
-                            }}
-                        >
-                            {loggedSuccessfully ? renderLoggedSuccessfullyMessage() : renderLogExerciseForm()}
-                        </div>
-                    )}
+                    {exerciseHistory && exerciseHistory.length > 0 &&
+                       (loggedSuccessfully ? renderLoggedSuccessfullyMessage() : renderLogExerciseForm())
+                    }
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>

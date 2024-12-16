@@ -151,6 +151,7 @@ function ExercisesDisplay({ data }) {
                 paginatorTemplate="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                 currentPageReportTemplate="{currentPage} / {totalPages}"
                 globalFilter={searchQuery}
+                globalFilterFields={['name', 'date']}
                 header={header}
                 emptyMessage={emptyMessage}
             >
