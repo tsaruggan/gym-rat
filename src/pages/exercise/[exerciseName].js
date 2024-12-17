@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from 'next/router';
 import styles from "@/styles/Home.module.css";
 import ExerciseHistoryDisplay from "@/components/ExerciseHistoryDisplay";
+import ExerciseProgressDisplay from "@/components/ExerciseProgressDisplay";
 import LogExerciseForm from '@/components/LogExerciseForm';
 import data from '../../../public/exercises.json';
  
@@ -52,6 +53,7 @@ export default function ExercisePage() {
             <main className={styles.main} >
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                     <h1>{exerciseName}</h1>
+                    {/* if exercise history is loaded show exercise form preloaded with last exercise. on submit just display logged message */}
                     {exerciseHistory && exerciseHistory.length > 0 &&
                        (loggedSuccessfully ? renderLoggedSuccessfullyMessage() : renderLogExerciseForm())
                     }
@@ -64,7 +66,7 @@ export default function ExercisePage() {
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                     <h2>Progress</h2>
-                    <p>Data visualization of progress (progessive overload) here...</p>
+                    <ExerciseProgressDisplay history={exerciseHistory}/>
                 </div>
             </main>
         </div>
