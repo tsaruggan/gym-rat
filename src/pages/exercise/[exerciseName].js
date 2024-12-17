@@ -51,9 +51,8 @@ export default function ExercisePage() {
     return (
         <div className={styles.page}>
             <main className={styles.main} >
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                {/* <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                     <h1>{exerciseName}</h1>
-                    {/* if exercise history is loaded show exercise form preloaded with last exercise. on submit just display logged message */}
                     {exerciseHistory && exerciseHistory.length > 0 &&
                        (loggedSuccessfully ? renderLoggedSuccessfullyMessage() : renderLogExerciseForm())
                     }
@@ -62,7 +61,7 @@ export default function ExercisePage() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                     <h2>History</h2>
                     <ExerciseHistoryDisplay history={exerciseHistory}/>
-                </div>
+                </div> */}
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                     <h2>Progress</h2>

@@ -1,8 +1,44 @@
 [
   {
     "name": "Lateral Pulldowns",
-    "date": "2024-11-05T12:12:27Z",
+    "date": "2024-11-01T08:00:00Z",
     "sets": [
+      {
+        "weight": 60,
+        "reps": 12,
+        "warmUp": true
+      },
+      {
+        "weight": 70,
+        "reps": 10,
+        "warmUp": true
+      },
+      {
+        "weight": 80,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 80,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 80,
+        "reps": 8,
+        "warmUp": false
+      }
+    ]
+  },
+  {
+    "name": "Lateral Pulldowns",
+    "date": "2024-11-03T08:00:00Z",
+    "sets": [
+      {
+        "weight": 65,
+        "reps": 12,
+        "warmUp": true
+      },
       {
         "weight": 75,
         "reps": 10,
@@ -11,223 +47,11 @@
       {
         "weight": 85,
         "reps": 8,
-        "warmUp": true
-      },
-      {
-        "weight": 95,
-        "reps": 6,
         "warmUp": false
       },
       {
-        "weight": 95,
-        "reps": 6,
-        "warmUp": false
-      },
-      {
-        "weight": 95,
-        "reps": 6,
-        "warmUp": false
-      }
-    ]
-  },
-  {
-    "name": "Lateral Pulldowns",
-    "date": "2024-11-05T02:30:15Z",
-    "sets": [
-      {
-        "weight": 80,
-        "reps": 10,
-        "warmUp": true
-      },
-      {
-        "weight": 90,
+        "weight": 85,
         "reps": 8,
-        "warmUp": true
-      },
-      {
-        "weight": 100,
-        "reps": 6,
-        "warmUp": false
-      },
-      {
-        "weight": 100,
-        "reps": 6,
-        "warmUp": false
-      },
-      {
-        "weight": 100,
-        "reps": 6,
-        "warmUp": false
-      }
-    ]
-  },
-  {
-    "name": "Lateral Pulldowns",
-    "date": "2024-11-23T09:20:00Z",
-    "sets": [
-      {
-        "weight": 80,
-        "reps": 10,
-        "warmUp": true
-      },
-      {
-        "weight": 90,
-        "reps": 8,
-        "warmUp": true
-      },
-      {
-        "weight": 100,
-        "reps": 8,
-        "warmUp": false
-      },
-      {
-        "weight": 100,
-        "reps": 8,
-        "warmUp": false
-      },
-      {
-        "weight": 100,
-        "reps": 8,
-        "warmUp": false
-      }
-    ]
-  },
-  {
-    "name": "Dumbell Bench Press",
-    "date": "2024-11-22T22:08:39Z",
-    "sets": [
-      {
-        "weight": 50,
-        "reps": 12,
-        "warmUp": true
-      },
-      {
-        "weight": 65,
-        "reps": 10,
-        "warmUp": true
-      },
-      {
-        "weight": 80,
-        "reps": 8,
-        "warmUp": true
-      },
-      {
-        "weight": 90,
-        "reps": 6,
-        "warmUp": false
-      },
-      {
-        "weight": 100,
-        "reps": 6,
-        "warmUp": false
-      },
-      {
-        "weight": 100,
-        "reps": 6,
-        "warmUp": false
-      }
-    ]
-  },
-  {
-    "name": "Dumbell Shoulder Press",
-    "date": "2024-11-05T03:02:15Z",
-    "sets": [
-      {
-        "weight": 60,
-        "reps": 6,
-        "warmUp": false
-      },
-      {
-        "weight": 65,
-        "reps": 6,
-        "warmUp": false
-      },
-      {
-        "weight": 70,
-        "reps": 6,
-        "warmUp": false
-      },
-      {
-        "weight": 70,
-        "reps": 5,
-        "warmUp": false
-      }
-    ]
-  },
-  {
-    "name": "Chest Flys",
-    "date": "2024-11-05T03:59:40Z",
-    "sets": [
-      {
-        "weight": 70,
-        "reps": 10,
-        "warmUp": false
-      },
-      {
-        "weight": 70,
-        "reps": 10,
-        "warmUp": false
-      },
-      {
-        "weight": 70,
-        "reps": 10,
-        "warmUp": false
-      },
-      {
-        "weight": 70,
-        "reps": 10,
-        "warmUp": false
-      },
-      {
-        "weight": 70,
-        "reps": 10,
-        "warmUp": false
-      }
-    ]
-  },
-  {
-    "name": "Chest Flys",
-    "date": "2024-11-22T22:31:39Z",
-    "sets": [
-      {
-        "weight": 55,
-        "reps": 10,
-        "warmUp": false
-      },
-      {
-        "weight": 55,
-        "reps": 10,
-        "warmUp": false
-      },
-      {
-        "weight": 55,
-        "reps": 10,
-        "warmUp": false
-      },
-      {
-        "weight": 55,
-        "reps": 10,
-        "warmUp": false
-      },
-      {
-        "weight": 55,
-        "reps": 10,
-        "warmUp": false
-      }
-    ]
-  },
-  {
-    "name": "Squats",
-    "date": "2024-11-19T00:07:43Z",
-    "sets": [
-      {
-        "weight": 95,
-        "reps": 8,
-        "warmUp": false
-      },
-      {
-        "weight": 95,
-        "reps": 7,
         "warmUp": false
       },
       {
@@ -239,8 +63,13 @@
   },
   {
     "name": "Lateral Pulldowns",
-    "date": "2024-12-05T19:09:00Z",
+    "date": "2024-11-05T08:00:00Z",
     "sets": [
+      {
+        "weight": 70,
+        "reps": 12,
+        "warmUp": true
+      },
       {
         "weight": 80,
         "reps": 10,
@@ -249,20 +78,15 @@
       {
         "weight": 90,
         "reps": 8,
-        "warmUp": true
+        "warmUp": false
       },
       {
-        "weight": 100,
+        "weight": 90,
         "reps": 8,
         "warmUp": false
       },
       {
-        "weight": 100,
-        "reps": 8,
-        "warmUp": false
-      },
-      {
-        "weight": 100,
+        "weight": 90,
         "reps": 8,
         "warmUp": false
       }
@@ -270,8 +94,75 @@
   },
   {
     "name": "Lateral Pulldowns",
-    "date": "2024-12-07T20:00:00Z",
+    "date": "2024-11-07T08:00:00Z",
     "sets": [
+      {
+        "weight": 75,
+        "reps": 12,
+        "warmUp": true
+      },
+      {
+        "weight": 85,
+        "reps": 10,
+        "warmUp": true
+      },
+      {
+        "weight": 95,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 95,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 95,
+        "reps": 8,
+        "warmUp": false
+      }
+    ]
+  },
+  {
+    "name": "Lateral Pulldowns",
+    "date": "2024-11-09T08:00:00Z",
+    "sets": [
+      {
+        "weight": 75,
+        "reps": 12,
+        "warmUp": true
+      },
+      {
+        "weight": 85,
+        "reps": 10,
+        "warmUp": true
+      },
+      {
+        "weight": 90,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 95,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 95,
+        "reps": 8,
+        "warmUp": false
+      }
+    ]
+  },
+  {
+    "name": "Lateral Pulldowns",
+    "date": "2024-11-11T08:00:00Z",
+    "sets": [
+      {
+        "weight": 80,
+        "reps": 12,
+        "warmUp": true
+      },
       {
         "weight": 90,
         "reps": 10,
@@ -280,50 +171,29 @@
       {
         "weight": 100,
         "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 100,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 100,
+        "reps": 8,
+        "warmUp": false
+      }
+    ]
+  },
+  {
+    "name": "Lateral Pulldowns",
+    "date": "2024-11-13T08:00:00Z",
+    "sets": [
+      {
+        "weight": 80,
+        "reps": 12,
         "warmUp": true
       },
-      {
-        "weight": 110,
-        "reps": 8,
-        "warmUp": false
-      },
-      {
-        "weight": 110,
-        "reps": 8,
-        "warmUp": false
-      },
-      {
-        "weight": 110,
-        "reps": 8,
-        "warmUp": false
-      }
-    ]
-  },
-  {
-    "name": "Lateral Pulldowns",
-    "date": "2024-12-10T15:34:00Z",
-    "sets": [
-      {
-        "weight": 110,
-        "reps": 10,
-        "warmUp": false
-      },
-      {
-        "weight": 110,
-        "reps": 10,
-        "warmUp": false
-      },
-      {
-        "weight": 110,
-        "reps": 8,
-        "warmUp": false
-      }
-    ]
-  },
-  {
-    "name": "Lateral Pulldowns",
-    "date": "2024-12-15T11:36:00Z",
-    "sets": [
       {
         "weight": 90,
         "reps": 10,
@@ -332,21 +202,78 @@
       {
         "weight": 100,
         "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 100,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 90,
+        "reps": 8,
+        "warmUp": false
+      }
+    ]
+  },
+  {
+    "name": "Lateral Pulldowns",
+    "date": "2024-11-15T08:00:00Z",
+    "sets": [
+      {
+        "weight": 85,
+        "reps": 12,
+        "warmUp": true
+      },
+      {
+        "weight": 95,
+        "reps": 10,
         "warmUp": true
       },
       {
         "weight": 110,
-        "reps": 10,
+        "reps": 8,
         "warmUp": false
       },
       {
         "weight": 110,
-        "reps": 10,
+        "reps": 8,
         "warmUp": false
       },
       {
         "weight": 110,
+        "reps": 8,
+        "warmUp": false
+      }
+    ]
+  },
+  {
+    "name": "Lateral Pulldowns",
+    "date": "2024-11-17T08:00:00Z",
+    "sets": [
+      {
+        "weight": 90,
+        "reps": 12,
+        "warmUp": true
+      },
+      {
+        "weight": 100,
         "reps": 10,
+        "warmUp": true
+      },
+      {
+        "weight": 120,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 120,
+        "reps": 8,
+        "warmUp": false
+      },
+      {
+        "weight": 120,
+        "reps": 8,
         "warmUp": false
       }
     ]

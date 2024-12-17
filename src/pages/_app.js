@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 export default function App({ Component, pageProps }) {
+
   return (
     <div className={GeistMono.className}>
       <Head>
