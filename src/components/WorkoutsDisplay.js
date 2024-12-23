@@ -68,8 +68,8 @@ export default function WorkoutsDisplay({ data }) {
                 {paginatedWorkouts.map((workout, index) => (
                     <AccordionTab key={index} headerTemplate={renderHeader(workout)}>
                         <div style={{display: 'flex', flexDirection: 'column', gap: '12px', padding: '12px'}}>
-                            {workout.exercises.map((exercise, _) => (
-                                <Log exercise={exercise} />
+                            {workout.exercises.map((exercise, index) => (
+                                <Log key={index} exercise={exercise} />
                             ))}
                         </div>
                     </AccordionTab>

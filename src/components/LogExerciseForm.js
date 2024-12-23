@@ -7,19 +7,19 @@ import styles from "@/styles/Home.module.css";
 
 const defaultSets = [ { weight: 55, reps: 8, warmUp: false }, { weight: 55, reps: 8, warmUp: false }, { weight: 55, reps: 8, warmUp: false } ];
 
-const defaultDate = new Date().toLocaleString('en-CA', { hour12: false });
+const getCurrentDate = () => new Date().toLocaleString('en-CA', { hour12: false });
 
 const initializeSets = (initialSets = defaultSets) => { 
     return initialSets.map(set => ({ ...set, key: generateUniqueKey() })); 
 };
 
-const initializeDate = (intialDate = defaultDate) => { 
-    return intialDate.slice(0, 17).replace(', ', 'T'); 
+const initializeDate = (intialDate = getCurrentDate()) => {
+    return intialDate.slice(0, 17).replace(', ', 'T');
 }
 
 const generateUniqueKey = () =>  Math.random().toString();
 
-const LogExerciseForm = ({ hideExerciseName = false, initialExerciseName = '', initialSets = defaultSets, initialDate = defaultDate, onLog }) => {
+const LogExerciseForm = ({ hideExerciseName = false, initialExerciseName = '', initialSets = defaultSets, initialDate = getCurrentDate(), onLog }) => {
     const [exerciseName, setExerciseName] = useState(initialExerciseName);
     const [sets, setSets] = useState(initializeSets(initialSets));
     const [date, setDate] = useState(initializeDate(initialDate));
@@ -89,7 +89,6 @@ const LogExerciseForm = ({ hideExerciseName = false, initialExerciseName = '', i
             i === index ? { ...set, [key]: value } : set
         );
         setSets(updatedSets);
-        console.log(updatedSets);
     };
 
     const deleteSet = (index) => {

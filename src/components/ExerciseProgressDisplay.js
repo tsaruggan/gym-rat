@@ -16,22 +16,18 @@ const red = 'rgb(255, 59, 48)';
 const color1 = 'rgb(68, 16, 181)';
 const color2 = 'rgb(207, 150, 8)';
 
+const timeRangeOptions = [
+    { label: '2 weeks', value: 14 },
+    { label: '1 month', value: 30 },
+    { label: '3 months', value: 90 },
+    { label: '6 months', value: 180 }
+];
+
 export default function ExerciseProgressDisplay({ history }) {
     const [data, setData] = useState([]);
     const [volumeLoadChartData, setVolumeLoadChartData] = useState({});
     const [averageWeightChartData, setAverageWeightChartData] = useState({});
-
-    const timeRangeOptions = [
-        { label: '2 weeks', value: 14 },
-        { label: '1 month', value: 30 },
-        { label: '3 months', value: 90 },
-        { label: '6 months', value: 180 }
-    ];
     const [timeRange, setTimeRange] = useState(timeRangeOptions[0].value);
-
-    const handleTimeRangeChange = (e) => {
-        setTimeRange(e.value);
-    };
 
     useEffect(() => {
         if (history && history.length > 0) {
@@ -44,7 +40,8 @@ export default function ExerciseProgressDisplay({ history }) {
                 const volumeLoad = workingSets.reduce((acc, set) => acc + set.weight * set.reps, 0);
                 // const averageWeight = workingSets.reduce((acc, set) => acc + set.weight, 0) / workingSets.length;
                 const totalReps = workingSets.reduce((acc, set) => acc + set.reps, 0);
-                const averageWeight = workingSets.reduce((acc, set) => acc + set.weight * set.reps, 0) / totalReps; // weighted average
+                let averageWeight = workingSets.reduce((acc, set) => acc + set.weight * set.reps, 0) / totalReps; // weighted average
+                averageWeight = Math.round(averageWeight * 2) / 2; // Round to nearest 0.5
 
                 // color points based on improvement or decline
                 let volumeLoadColor = gray;
@@ -108,14 +105,6 @@ export default function ExerciseProgressDisplay({ history }) {
             const volumeLoadTrendlineData = restoreTimeSeries(volumeLoadTrend.points);
             const averageWeightTrendlineData = restoreTimeSeries(averageWeightTrend.points);
 
-            // const cutoffNormalizedDate = normalizeDate(cutoffDate);
-            // const extendTrendlineToCutoff = (trend, trendlineData) => {
-            //     const yAtCutoff = trend.predict(cutoffNormalizedDate)[1];
-            //     trendlineData.unshift({ x: cutoffDate, y: yAtCutoff });
-            // }
-            // extendTrendlineToCutoff(volumeLoadTrend ,volumeLoadTrendlineData);
-            // extendTrendlineToCutoff(averageWeightTrend, averageWeightTrendlineData);
-
             const volumeLoadChartData = {
                 datasets: [
                     {
@@ -137,9 +126,7 @@ export default function ExerciseProgressDisplay({ history }) {
                         type: 'line',
                         pointRadius: 0,
                         pointHoverRadius: 0,
-                        tooltip: {
-                            enabled: false
-                        }
+                        tooltip: { enabled: false }
                     }
                 ]
             };
@@ -165,9 +152,7 @@ export default function ExerciseProgressDisplay({ history }) {
                         pointRadius: 0,
                         type: 'line',
                         pointHoverRadius: 0,
-                        tooltip: {
-                            enabled: false
-                        }
+                        tooltip: { enabled: false }
                     }
                 ]
             };
@@ -190,13 +175,9 @@ export default function ExerciseProgressDisplay({ history }) {
                 display: true,
                 ticks: { 
                     display: true,
-                    callback: function(value) {
-                        return value.toLocaleString('en-US', { useGrouping: false });
-                    } 
+                    callback: (value) => value.toLocaleString('en-US', { useGrouping: false }),
                 },
-                afterFit: function(axis) {
-                    axis.width = 50;
-                }
+                afterFit: (axis) => axis.width = 50
             },
         },
         plugins: {
@@ -204,16 +185,13 @@ export default function ExerciseProgressDisplay({ history }) {
             tooltip: {
                 enabled: true,
                 displayColors: false,
+                mode: "nearest",
+                intersect: true,
+                filter: (tooltipItem) => tooltipItem.dataset.type !== "line",
                 callbacks: {
-                    title: (tooltipItem) => {
-                        return renderToolTipTitle(tooltipItem);
-                    },
-                    label: (tooltipItem) => {
-                        return renderTooltip(tooltipItem);
-                    },
-                    footer: (tooltipItem) => {
-                        return `Volume Load: ${tooltipItem[0].raw.y} lb`;
-                    }
+                    title: (tooltipItem) => renderToolTipTitle(tooltipItem),
+                    label: (tooltipItem) => renderTooltipLabel(tooltipItem),
+                    footer: (tooltipItem) => renderToolTipFooter(tooltipItem, "Volume Load")
                 },
             },
             title: { 
@@ -224,9 +202,6 @@ export default function ExerciseProgressDisplay({ history }) {
             },
         },
         maintainAspectRatio: false,
-        options: {
-            locale: 'fr'
-        }
     };    
 
     const averageWeightChartOptions = {
@@ -241,13 +216,9 @@ export default function ExerciseProgressDisplay({ history }) {
                 display: true,
                 ticks: { 
                     display: true,
-                    callback: function(value) {
-                        return value.toLocaleString('en-US', { useGrouping: false });
-                    } 
+                    callback: (value) => value.toLocaleString('en-US', { useGrouping: false }),
                 },
-                afterFit: function(axis) {
-                    axis.width = 50;
-                }
+                afterFit: (axis) => axis.width = 50
             },
         },
         plugins: {
@@ -255,18 +226,13 @@ export default function ExerciseProgressDisplay({ history }) {
             tooltip: {
                 enabled: true,
                 displayColors: false,
+                mode: "nearest",
+                intersect: true,
+                filter: (tooltipItem) => tooltipItem.dataset.type !== "line",
                 callbacks: {
-                    title: (tooltipItem) => {
-                        return renderToolTipTitle(tooltipItem);
-                    },
-                    label: (tooltipItem) => {
-                        return renderTooltip(tooltipItem);
-                    },
-                    footer: (tooltipItem) => {
-                        const averageWeight = tooltipItem[0].raw.y;
-                        const roundedAverage = Math.round(averageWeight * 2) / 2; // Round to nearest 0.5
-                        return `Average Weight: ${roundedAverage} lb`;
-                    }
+                    title: (tooltipItem) => renderToolTipTitle(tooltipItem),
+                    label: (tooltipItem) => renderTooltipLabel(tooltipItem),
+                    footer: (tooltipItem) => renderToolTipFooter(tooltipItem, "Average Weight")
                 },
             },
             title: { 
@@ -298,7 +264,13 @@ export default function ExerciseProgressDisplay({ history }) {
         return `${formattedDate} @ ${formattedTime}`;
     }
     
-    const renderTooltip = (tooltipItem) => {
+    const renderToolTipTitle = (tooltipItem) => {
+        if (tooltipItem && tooltipItem[0] && tooltipItem[0].raw && tooltipItem[0].raw.exercise) {
+            return `${formatDateTime(tooltipItem[0].raw.exercise.date)}`;
+        }
+    }
+
+    const renderTooltipLabel = (tooltipItem) => {
         if (tooltipItem && tooltipItem.raw && tooltipItem.raw.exercise) {
             const sets = tooltipItem.raw.exercise.sets;
             const formattedSets = sets.map((set) => {
@@ -311,10 +283,10 @@ export default function ExerciseProgressDisplay({ history }) {
             return formattedSets;
         }
     }
-    
-    const renderToolTipTitle = (tooltipItem) => {
-        if (tooltipItem && tooltipItem[0] && tooltipItem[0].raw && tooltipItem[0].raw.exercise) {
-            return `${formatDateTime(tooltipItem[0].raw.exercise.date)}`;
+
+    const renderToolTipFooter = (tooltipItem, label) => {
+        if (tooltipItem && tooltipItem[0] && tooltipItem[0].raw && tooltipItem[0].raw.y) {
+            return `${label}: ${tooltipItem[0].raw.y} lb`;
         }
     }
 
@@ -340,7 +312,7 @@ export default function ExerciseProgressDisplay({ history }) {
                 <Dropdown 
                     value={timeRange} 
                     options={timeRangeOptions} 
-                    onChange={handleTimeRangeChange} 
+                    onChange={(e) => setTimeRange(e.value)} 
                     style={{ padding: '4px', width: '128px' }} 
                 />
             </div>
