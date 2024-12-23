@@ -174,7 +174,7 @@ function ExercisesDisplay({ data }) {
                     header="Weight"
                     field="weightRange"
                     headerStyle={{ textAlign: 'center' }}
-                    style={{ minWidth: '72px', textAlign: 'left' }}
+                    style={{ minWidth: '84px', textAlign: 'left' }}
                 />
                 <Column
                     header="Sets"

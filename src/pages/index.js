@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Lift Monkey</title>
+        <title>Gym Rat</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <div className={styles.page}>

@@ -1,16 +1,11 @@
 import "@/styles/globals.css";
 import Head from "next/head";
-
 import { GeistMono } from "geist/font/mono";
-
 import { PrimeReactProvider } from 'primereact/api';
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/nano/theme.css";
 import 'primeicons/primeicons.css';
-
-
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import Layout from "@/components/Layout";
 
 export default function App({ Component, pageProps }) {
 
@@ -24,7 +19,9 @@ export default function App({ Component, pageProps }) {
         <link rel="manifest" href="/manifest.json" />
       </Head>
       <PrimeReactProvider>
-        <Component {...pageProps} />
+        <Layout> 
+          <Component {...pageProps} />
+        </Layout>
       </PrimeReactProvider>
     </div>
   );
