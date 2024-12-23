@@ -81,10 +81,16 @@ function ExercisesDisplay({ data }) {
     }
 
     const calculateAverageWorkingWeight = (workingSets) => {
-        const totalWeight = workingSets.reduce((acc, set) => acc + set.weight, 0);
-        const average = totalWeight / workingSets.length;
-        const roundedAverage = Math.round(average * 2) / 2; // Round to nearest 0.5
-        return roundedAverage.toFixed(1);
+        // const totalWeight = workingSets.reduce((acc, set) => acc + set.weight, 0);
+        // const average = totalWeight / workingSets.length;
+        // const roundedAverage = Math.round(average * 2) / 2; // Round to nearest 0.5
+        // return roundedAverage.toFixed(1);
+
+        // weighted average
+        const totalWeightedWeight = workingSets.reduce((acc, set) => acc + (set.weight * set.reps), 0);
+        const totalReps = workingSets.reduce((acc, set) => acc + set.reps, 0);
+        const weightedAverage = totalWeightedWeight / totalReps;
+        return Math.round(weightedAverage * 2) / 2; // Round to nearest 0.5
     };
 
     const calculateAverageWorkingReps = (workingSets) => {

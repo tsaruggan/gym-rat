@@ -9,7 +9,14 @@ import { Chart as ChartJS, Legend } from 'chart.js';
 import { GeistMono } from "geist/font/mono";
 ChartJS.defaults.font.family = GeistMono.style.fontFamily;
 
-function ExerciseProgressDisplay({ history }) {
+// colors
+const gray = 'rgb(174, 174, 178)';
+const green = 'rgb(52, 199, 89)';
+const red = 'rgb(255, 59, 48)';
+const color1 = 'rgb(68, 16, 181)';
+const color2 = 'rgb(207, 150, 8)';
+
+export default function ExerciseProgressDisplay({ history }) {
     const [data, setData] = useState([]);
     const [volumeLoadChartData, setVolumeLoadChartData] = useState({});
     const [averageWeightChartData, setAverageWeightChartData] = useState({});
@@ -40,9 +47,6 @@ function ExerciseProgressDisplay({ history }) {
                 const averageWeight = workingSets.reduce((acc, set) => acc + set.weight * set.reps, 0) / totalReps; // weighted average
 
                 // color points based on improvement or decline
-                const gray = 'rgb(174, 174, 178)';
-                const green = 'rgb(52, 199, 89)';
-                const red = 'rgb(255, 59, 48)';
                 let volumeLoadColor = gray;
                 let averageWeightColor = gray;
                 if (i < history.length - 1) {
@@ -66,7 +70,8 @@ function ExerciseProgressDisplay({ history }) {
                     volumeLoad: volumeLoad,
                     averageWeight: averageWeight,
                     volumeLoadColor: volumeLoadColor,
-                    averageWeightColor: averageWeightColor
+                    averageWeightColor: averageWeightColor,
+                    exercise: exercise
                 });
             }
             setData(data);
@@ -81,8 +86,8 @@ function ExerciseProgressDisplay({ history }) {
             const filteredData = data.filter((point) => point.date >= cutoffDate);
 
             //// aggregate data in correct format for chart.js
-            const volumeLoadData = filteredData.map((point) => ({ x: point.date, y: point.volumeLoad }));
-            const averageWeightData = filteredData.map((point) => ({ x: point.date, y: point.averageWeight }));
+            const volumeLoadData = filteredData.map((point) => ({ x: point.date, y: point.volumeLoad, exercise: point.exercise }));
+            const averageWeightData = filteredData.map((point) => ({ x: point.date, y: point.averageWeight, exercise: point.exercise }));
 
             const volumeLoadBackgroundColor = filteredData.map((point) => point.volumeLoadColor);
             const averageWeightBackgroundColor = filteredData.map((point) => point.averageWeightColor);
@@ -102,8 +107,6 @@ function ExerciseProgressDisplay({ history }) {
             const restoreTimeSeries = (normalizedTimeSeries) => normalizedTimeSeries.map((point) => ({ x: restoreDate(point[0]), y: point[1] }));
             const volumeLoadTrendlineData = restoreTimeSeries(volumeLoadTrend.points);
             const averageWeightTrendlineData = restoreTimeSeries(averageWeightTrend.points);
-
-            console.log(volumeLoadTrend)
 
             // const cutoffNormalizedDate = normalizeDate(cutoffDate);
             // const extendTrendlineToCutoff = (trend, trendlineData) => {
@@ -126,7 +129,7 @@ function ExerciseProgressDisplay({ history }) {
                     },
                     {
                         data: volumeLoadTrendlineData,
-                        borderColor: 'rgb(30, 144, 255)',
+                        borderColor: color1,
                         borderWidth: 2,
                         fill: false,
                         pointRadius: 0,
@@ -154,7 +157,7 @@ function ExerciseProgressDisplay({ history }) {
                     },
                     {
                         data: averageWeightTrendlineData,
-                        borderColor: 'rgb(249, 200, 96)',
+                        borderColor: color2,
                         borderWidth: 2,
                         fill: false,
                         pointRadius: 0,
@@ -185,21 +188,46 @@ function ExerciseProgressDisplay({ history }) {
             y: {
                 title: { display: false, text: 'Volume Load (lb)' },
                 display: true,
-                ticks: { display: true },
+                ticks: { 
+                    display: true,
+                    callback: function(value) {
+                        return value.toLocaleString('en-US', { useGrouping: false });
+                    } 
+                },
+                afterFit: function(axis) {
+                    axis.width = 50;
+                }
             },
         },
         plugins: {
             legend: { display: false },
-            tooltip: { displayColors: false },
+            tooltip: {
+                enabled: true,
+                displayColors: false,
+                callbacks: {
+                    title: (tooltipItem) => {
+                        return renderToolTipTitle(tooltipItem);
+                    },
+                    label: (tooltipItem) => {
+                        return renderTooltip(tooltipItem);
+                    },
+                    footer: (tooltipItem) => {
+                        return `Volume Load: ${tooltipItem[0].raw.y} lb`;
+                    }
+                },
+            },
             title: { 
                 display: true,  
                 text: 'Volume Load (lb)', 
                 padding: { top: 8, bottom: 8 },
-                color: 'rgb(0, 73, 147)',
-            },            
+                color: color1,
+            },
         },
-        maintainAspectRatio: false
-    };
+        maintainAspectRatio: false,
+        options: {
+            locale: 'fr'
+        }
+    };    
 
     const averageWeightChartOptions = {
         scales: {
@@ -211,28 +239,88 @@ function ExerciseProgressDisplay({ history }) {
             y: {
                 title: { display: false, text: 'Average Weight (lb)' },
                 display: true,
-                ticks: { display: true },
+                ticks: { 
+                    display: true,
+                    callback: function(value) {
+                        return value.toLocaleString('en-US', { useGrouping: false });
+                    } 
+                },
+                afterFit: function(axis) {
+                    axis.width = 50;
+                }
             },
         },
         plugins: {
             legend: { display: false },
-            tooltip: { displayColors: false },      
+            tooltip: {
+                enabled: true,
+                displayColors: false,
+                callbacks: {
+                    title: (tooltipItem) => {
+                        return renderToolTipTitle(tooltipItem);
+                    },
+                    label: (tooltipItem) => {
+                        return renderTooltip(tooltipItem);
+                    },
+                    footer: (tooltipItem) => {
+                        const averageWeight = tooltipItem[0].raw.y;
+                        const roundedAverage = Math.round(averageWeight * 2) / 2; // Round to nearest 0.5
+                        return `Average Weight: ${roundedAverage} lb`;
+                    }
+                },
+            },
             title: { 
                 display: true,  
                 text: 'Average Weight (lb)',
                 padding: { top: 8, bottom: 8 },
-                color: 'rgb(140, 96, 1)',       
+                color: color2,       
             },
             
         },
         maintainAspectRatio: false
     };
 
+    const formatDateTime = (dateString) => {
+        const date = new Date(dateString);
     
+        const formattedDate = new Intl.DateTimeFormat('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric'
+        }).format(date);
+    
+        const formattedTime = new Intl.DateTimeFormat('en-US', {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true
+        }).format(date);
+    
+        return `${formattedDate} @ ${formattedTime}`;
+    }
+    
+    const renderTooltip = (tooltipItem) => {
+        if (tooltipItem && tooltipItem.raw && tooltipItem.raw.exercise) {
+            const sets = tooltipItem.raw.exercise.sets;
+            const formattedSets = sets.map((set) => {
+                let str = `${set.reps} × ${set.weight} lb`;
+                if (set.warmUp) {
+                    return str + ' ❄️';
+                }
+                return str;
+            });
+            return formattedSets;
+        }
+    }
+    
+    const renderToolTipTitle = (tooltipItem) => {
+        if (tooltipItem && tooltipItem[0] && tooltipItem[0].raw && tooltipItem[0].raw.exercise) {
+            return `${formatDateTime(tooltipItem[0].raw.exercise.date)}`;
+        }
+    }
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <div style={{ border: 'solid 1px #dee2e6', padding: '12px'}}>
+            <div style={{ border: 'solid 1px #dee2e6', padding: '4px'}}>
                 <Chart 
                     type="scatter" 
                     data={volumeLoadChartData} 
@@ -240,7 +328,7 @@ function ExerciseProgressDisplay({ history }) {
                     style={{ aspectRatio: '1 / 1', width: '100%', height: '100%', maxHeight: '300px' }} 
                 />
             </div>
-            <div style={{ border: 'solid 1px #dee2e6', padding: '12px'}}>
+            <div style={{ border: 'solid 1px #dee2e6', padding: '4px'}}>
                 <Chart 
                     type="scatter" 
                     data={averageWeightChartData} 
@@ -253,12 +341,10 @@ function ExerciseProgressDisplay({ history }) {
                     value={timeRange} 
                     options={timeRangeOptions} 
                     onChange={handleTimeRangeChange} 
-                    style={{ padding: '12px' }} 
+                    style={{ padding: '4px', width: '128px' }} 
                 />
             </div>
             
         </div>
     );
 }
-
-export default ExerciseProgressDisplay;
