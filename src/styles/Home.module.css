@@ -77,6 +77,7 @@
   align-items: center;
   line-height: 1em;
   box-shadow: none;
+  border-radius: 8px;
 }
 
 .warmUpToggle:hover {
@@ -86,21 +87,22 @@
 
 .trashButton {
   background-color: transparent;
-  border: 1px solid rgb(255, 55, 0);
-  color: rgb(255, 55, 0);
+  border: 1px solid #E63946;
+  color: #E63946;
   cursor: pointer;
   width: auto;
   height: 2em;
   aspect-ratio: 1;
+  border-radius: 8px;
 }
 
 .trashButton:hover {
-  background-color: rgb(255, 55, 0, 0.4);
-  border: 2px solid rgb(255, 55, 0) !important;
+  background-color: #e6394771;
+  border: 2px solid #E63946 !important;
 }
 
 .trashButton:disabled {
-  background-color: rgba(255, 200, 185, 0.4);
+  background-color: #e6394735;
   color: gray;
   border-color: gray;
 }
@@ -114,33 +116,35 @@
   box-shadow: none;
   padding: 16px;
   height: 36px;
+  border-radius: 8px;
 }
 
 .addSetButton {
-  border: dashed 2px black;
-  background-color: transparent;
+  border: solid 1px;
+  background-color: white;
   color: black;
 }
 
 .addSetButton:hover {
-  background-color: lightblue;
+  background-color: rgb(17, 116, 192, 0.1);
   border: solid 2px black;
   font-weight: bold;
-  color: palevioletred;
+  color: #635380;
 }
 
 .logExerciseButton {
   border: solid 2px black;
-  background-color: lightseagreen;
-  color: white;
+  /* background-color: #387D7A; */
+  background-color: #339989;
+  color: black;
   font-weight: bold;
 }
 
 .logExerciseButton:hover {
-  background-color: indigo;
+  background-color: rgb(99, 83, 128);
   border: solid 2px black;
   font-weight: bolder;
-  color: greenyellow;
+  color: rgb(154, 205, 50);
 }
 
 .logExerciseButton:disabled {
@@ -163,11 +167,13 @@
   appearance: none;
   -webkit-appearance: none;
   box-sizing: border-box;
+  background-color: white;
+  border-radius: 8px;
 }
 
 .dateTimePickerInput:hover {
-  color: navy;
-  border: solid 2px navy;
+  color: #2A324B;
+  border: solid 2px #2A324B;
   cursor: pointer;
 }
 
@@ -179,7 +185,7 @@
 .header {
   position: sticky;
   top: 0;
-  padding: 20px;
+  padding: 24px;
   text-align: center;
   width: 100%;
   z-index: 10;
@@ -191,14 +197,12 @@
 }
 
 .headerContent {
+  display: flex;
+  justify-content: space-between;
   max-width: 800px;
   width: 100%;
   display: flex;
-
-}
-
-.logo {
-  font-size: 16px;
+  font-size: 20px;
   text-decoration: none;
   font-weight: bold;
 }

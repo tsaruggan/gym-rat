@@ -8,8 +8,9 @@ const Layout = ({ children }) => {
       <header className={styles.header}>
         <div className={styles.headerContent}>
             <Link href="/">
-                <span className={styles.logo}>🐭 Gym Rat</span>
+                <span>🐭 Gym Rat</span>
             </Link>
+            <span>🧀</span>
         </div>
       </header>
       <main>{children}</main>

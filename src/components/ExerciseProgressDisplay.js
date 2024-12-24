@@ -13,8 +13,8 @@ ChartJS.defaults.font.family = GeistMono.style.fontFamily;
 const gray = 'rgb(174, 174, 178)';
 const green = 'rgb(52, 199, 89)';
 const red = 'rgb(255, 59, 48)';
-const color1 = 'rgb(68, 16, 181)';
-const color2 = 'rgb(207, 150, 8)';
+const color1 = 'rgb(59, 40, 204)';
+const color2 = 'rgb(255, 159, 28)';
 
 const timeRangeOptions = [
     { label: '2 weeks', value: 14 },
@@ -199,6 +199,7 @@ export default function ExerciseProgressDisplay({ history }) {
                 text: 'Volume Load (lb)', 
                 padding: { top: 8, bottom: 8 },
                 color: color1,
+                font: { size: '14px' }       
             },
         },
         maintainAspectRatio: false,
@@ -239,7 +240,8 @@ export default function ExerciseProgressDisplay({ history }) {
                 display: true,  
                 text: 'Average Weight (lb)',
                 padding: { top: 8, bottom: 8 },
-                color: color2,       
+                color: color2,
+                font: { size: '14px' }       
             },
             
         },

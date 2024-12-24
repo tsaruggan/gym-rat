@@ -45,7 +45,7 @@ const LogExerciseForm = ({ hideExerciseName = false, initialExerciseName = '', i
 
         return (
             <div key={key} style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <label>{`Set ${index + 1}`}</label>
+                <label style={{ fontSize: '12px', fontWeight: 'bold' }}>{`Set ${index + 1}`}</label>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                         <InputNumber
@@ -76,7 +76,7 @@ const LogExerciseForm = ({ hideExerciseName = false, initialExerciseName = '', i
                     <Button
                         onClick={() => deleteSet(index)}
                         icon="pi pi-trash"
-                        className={`${styles.trashButton}`}
+                        className={styles.trashButton}
                         disabled={sets.length <= 1}
                     />
                 </div>
@@ -152,7 +152,7 @@ const LogExerciseForm = ({ hideExerciseName = false, initialExerciseName = '', i
 
             {sets.map((_, index) => renderSet(index))}
 
-            <Button className={styles.addSetButton} onClick={addSet}>Add Set</Button>
+            <Button className={styles.addSetButton} onClick={addSet}>+ Add Set +</Button>
 
             <input type="datetime-local" value={date} onChange={(e) => setDate(e.target.value)} className={styles.dateTimePickerInput} />
 
