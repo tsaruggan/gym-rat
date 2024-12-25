@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }) {
     <div className={GeistMono.className}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Lift Monkey</title>
+        <title>Gym Rat</title>
         <meta name="description" content="weightlifting tracker" />
         <meta name="theme-color" content="#ffffff" />
         <link rel="manifest" href="/manifest.json" />

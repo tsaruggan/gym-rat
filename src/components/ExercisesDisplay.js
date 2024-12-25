@@ -61,9 +61,9 @@ function ExercisesDisplay({ data }) {
         }
 
         if (minWeight == maxWeight) {
-            return `${minWeight}`;
+            return `${minWeight} lb`;
         }
-        return `${minWeight}-${maxWeight}`;
+        return `${minWeight}-${maxWeight} lb`;
     }
 
     const formatRepRange = (workingSets) => {
@@ -174,7 +174,7 @@ function ExercisesDisplay({ data }) {
                     header="Weight"
                     field="weightRange"
                     headerStyle={{ textAlign: 'center' }}
-                    style={{ minWidth: '84px', textAlign: 'left' }}
+                    style={{ minWidth: '112px', textAlign: 'left' }}
                 />
                 <Column
                     header="Sets"

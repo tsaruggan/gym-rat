@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import Link from 'next/link';
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Paginator } from 'primereact/paginator';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
+import ExerciseRecordTable from "./ExerciseRecordTable";
 import styles from "@/styles/Home.module.css";
 
 export default function WorkoutsDisplay({ data }) {
@@ -62,6 +61,27 @@ export default function WorkoutsDisplay({ data }) {
         );
     }
 
+    const renderExerciseRecord = (exercise, index) => {
+        const formatTime = (dateString) => {
+            const date = new Date(dateString);
+            return new Intl.DateTimeFormat('en-US', {
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true
+            }).format(date);
+        }
+
+        return (
+            <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <span>
+                    <Link href={`/exercise/${exercise.name}`} className={styles.exerciseLink}>{exercise.name}</Link>
+                    <span> @ {formatTime(exercise.date)}</span>
+                </span>
+                <ExerciseRecordTable exercise={exercise} />
+            </div>
+        );
+    }
+
     return (
         <div>
             <Accordion style={{ display: 'flex', flexDirection: 'column', gap: '4px'}}>
@@ -69,7 +89,7 @@ export default function WorkoutsDisplay({ data }) {
                     <AccordionTab key={index} headerTemplate={renderHeader(workout)}>
                         <div style={{display: 'flex', flexDirection: 'column', gap: '12px', padding: '12px'}}>
                             {workout.exercises.map((exercise, index) => (
-                                <Log key={index} exercise={exercise} />
+                                renderExerciseRecord(exercise, index)
                             ))}
                         </div>
                     </AccordionTab>
@@ -83,41 +103,6 @@ export default function WorkoutsDisplay({ data }) {
                 onPageChange={(e) => setCurrentPage(e.page)}
                 template={paginatorTemplate}
             />
-        </div>
-    );
-}
-
-// display an exercise log in a table
-function Log({ exercise }) {
-    const formatTime = (dateString) => {
-        const date = new Date(dateString);
-        return new Intl.DateTimeFormat('en-US', {
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true
-        }).format(date);
-    }
-
-    const renderWarmUpFlag = (rowData) => {
-        if (rowData.warmUp === true) {
-            return <span>❄️</span>;
-        } else {
-            return <span> </span>
-        }
-    }
-
-    return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-            <span>
-                <Link href={`/exercise/${exercise.name}`} className={styles.exerciseLink}>{exercise.name}</Link>
-                <span> @ {formatTime(exercise.date)}</span>
-            </span>
-            
-            <DataTable value={exercise.sets} tableStyle={{ width: '168px', overflowX: 'auto' }}> 
-                <Column style={{width: '72px'}} field="weight" header="Weight"/>
-                <Column style={{width: '72px'}} field="reps" header="Reps"/>
-                <Column style={{width: '24px'}} body={renderWarmUpFlag}/>
-            </DataTable>
         </div>
     );
 }

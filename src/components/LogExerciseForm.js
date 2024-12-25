@@ -45,7 +45,7 @@ const LogExerciseForm = ({ hideExerciseName = false, initialExerciseName = '', i
 
         return (
             <div key={key} style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <label style={{ fontSize: '12px', fontWeight: 'bold' }}>{`Set ${index + 1}`}</label>
+                <label style={{ fontSize: '12px' }}>{`Set ${index + 1}`}</label>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                         <InputNumber

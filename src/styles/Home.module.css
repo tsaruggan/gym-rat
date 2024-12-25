@@ -77,7 +77,7 @@
   align-items: center;
   line-height: 1em;
   box-shadow: none;
-  border-radius: 8px;
+  border-radius: 1000px;
 }
 
 .warmUpToggle:hover {
@@ -87,13 +87,12 @@
 
 .trashButton {
   background-color: transparent;
-  border: 1px solid #E63946;
+  border: 1px solid #e6394787;
   color: #E63946;
   cursor: pointer;
   width: auto;
   height: 2em;
   aspect-ratio: 1;
-  border-radius: 8px;
 }
 
 .trashButton:hover {
@@ -116,7 +115,7 @@
   box-shadow: none;
   padding: 16px;
   height: 36px;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 
 .addSetButton {
@@ -167,14 +166,20 @@
   appearance: none;
   -webkit-appearance: none;
   box-sizing: border-box;
-  background-color: white;
-  border-radius: 8px;
+  background-color: black;
+  color: white;
+  accent-color: white;
+}
+.dateTimePickerInput::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    color-scheme: dark;
 }
 
 .dateTimePickerInput:hover {
-  color: #2A324B;
+  background-color: #2A324B;
   border: solid 2px #2A324B;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .parent {
@@ -205,4 +210,14 @@
   font-size: 20px;
   text-decoration: none;
   font-weight: bold;
+}
+
+.headerButton {
+  padding: 12px;
+  background-color: transparent;
+  border-radius: 8px;
+}
+
+.headerButton:hover {
+  background-color: rgb(242, 241, 241);
 }
