@@ -20,10 +20,10 @@ function ExercisesDisplay({ data }) {
                 if (exercises.has(name)) {
                     const date = new Date(exercise.date);
                     const existingDate = new Date(exercises.get(name).date);
+                    freq.set(name, freq.get(name) + 1);
 
                     if (date > existingDate) {
                         exercises.set(name, exercise);
-                        freq.set(name, freq.get(name) + 1);
                     }
                 } else {
                     exercises.set(name, exercise);
@@ -37,6 +37,7 @@ function ExercisesDisplay({ data }) {
                 const workingSets = item.sets.filter(set => set.warmUp === false);
 
                 const exercise = {};
+                exercise.userId = item.userId;
                 exercise.name = item.name;
                 exercise.weight = calculateAverageWorkingWeight(workingSets);
                 exercise.workingSets = workingSets.length;
@@ -130,10 +131,11 @@ function ExercisesDisplay({ data }) {
     const emptyMessage = renderEmptyMessage();
 
     const renderExerciseName = (rowData) => {
+        const userId = rowData.userId;
         const exerciseName = rowData.name;
         return (
             <Link 
-                href={`/exercise/${exerciseName}`} 
+                href={`${userId}/exercise/${exerciseName}`} 
                 className={styles.exerciseLink}
                 scroll={true}
             >

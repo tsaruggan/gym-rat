@@ -74,7 +74,7 @@ export default function WorkoutsDisplay({ data }) {
         return (
             <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <span>
-                    <Link href={`/exercise/${exercise.name}`} className={styles.exerciseLink}>{exercise.name}</Link>
+                    <Link href={`${exercise.userId}/exercise/${exercise.name}`} className={styles.exerciseLink}>{exercise.name}</Link>
                     <span> @ {formatTime(exercise.date)}</span>
                 </span>
                 <ExerciseRecordTable exercise={exercise} />

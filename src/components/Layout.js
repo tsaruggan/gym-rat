@@ -2,10 +2,10 @@ import React from 'react';
 import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, userId }) => {
   return (
     <div className={styles.parent}>
-      <Header />
+      <Header userId={userId} />
       <main>{children}</main>
     </div>
   );
@@ -14,14 +14,14 @@ const Layout = ({ children }) => {
 export default Layout;
 
 
-function Header(props) {
+function Header({ userId }) {
     return (
       <header className={styles.header}>
         <div className={styles.headerContent}>
-            <Link href="/">
+            <Link href={`/${userId}`}>
                 <span className={styles.headerButton}>🐭 Gym Rat</span>
             </Link>
-            <Link href="/">
+            <Link href={`/${userId}`}>
                 <span className={styles.headerButton}>🧀</span>
             </Link>
         </div>

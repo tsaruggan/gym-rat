@@ -13,8 +13,8 @@ const initializeSets = (initialSets = defaultSets) => {
     return initialSets.map(set => ({ ...set, key: generateUniqueKey() })); 
 };
 
-const initializeDate = (intialDate = getCurrentDate()) => {
-    return intialDate.slice(0, 17).replace(', ', 'T');
+const initializeDate = (initialDate = getCurrentDate()) => {
+    return initialDate.slice(0, 17).replace(', ', 'T');
 }
 
 const generateUniqueKey = () =>  Math.random().toString();
@@ -23,18 +23,6 @@ const LogExerciseForm = ({ hideExerciseName = false, initialExerciseName = '', i
     const [exerciseName, setExerciseName] = useState(initialExerciseName);
     const [sets, setSets] = useState(initializeSets(initialSets));
     const [date, setDate] = useState(initializeDate(initialDate));
-
-    useEffect(() => {
-        setExerciseName(initialExerciseName);
-    }, [initialExerciseName]);
-
-    useEffect(() => {
-        setSets(initializeSets(initialSets));
-    }, [initialSets]);
-    
-    useEffect(() => {
-        setDate(initializeDate(initialDate));
-    }, [initialDate]);
     
     const renderSet = (index) => {
         const set = sets[index];

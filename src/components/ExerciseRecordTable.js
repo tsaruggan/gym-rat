@@ -17,10 +17,10 @@ export default function ExerciseRecordTable({ exercise }) {
     }
 
     return (
-        <DataTable value={exercise.sets} tableStyle={{ width: '168px', overflowX: 'auto' }}> 
-            <Column style={{width: '96px'}} body={renderWeight} header="Weight"/>
-            <Column style={{width: '72px'}} field="reps" header="Reps"/>
-            <Column style={{width: '24px'}} body={renderWarmUpFlag}/>
+        <DataTable value={exercise.sets} tableStyle={{ width: 'auto', overflowX: 'auto', tableLayout: 'auto' }}> 
+            <Column style={{minWidth: '96px'}} body={renderWeight} header="Weight"/>
+            <Column style={{minWidth: '72px'}} field="reps" header="Reps"/>
+            <Column style={{minWidth: '24px'}} body={renderWarmUpFlag}/>
         </DataTable>
     );
 }

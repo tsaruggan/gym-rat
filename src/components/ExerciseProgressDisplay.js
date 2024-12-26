@@ -92,7 +92,7 @@ export default function ExerciseProgressDisplay({ history }) {
             //// use regression.js to generate trendlines
             const minDate = Math.min(...filteredData.map(point => point.date.getTime()));
             const millisPerDay = 1000 * 60 * 60 * 24;
-            const normalizeDate = (date) => Math.floor((date.getTime() - minDate) / millisPerDay);
+            const normalizeDate = (date) => (date.getTime() - minDate) / millisPerDay;
             const normalizeTimeSeries = (timeSeries) => timeSeries.map((point) => [normalizeDate(point.x), point.y]);
             const regressionVolumeLoadData = normalizeTimeSeries(volumeLoadData);
             const regressionAverageWeightData = normalizeTimeSeries(averageWeightData);
