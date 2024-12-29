@@ -34,7 +34,7 @@ export default function ExercisePage() {
 
     const onLog = async (exercise) => {
         try {
-            const exerciseId = await logExercise(userId, exercise);
+            await logExercise(userId, exercise);
             setLoggedSuccessfully(true);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } catch (error) {

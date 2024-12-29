@@ -86,17 +86,24 @@ export default function WorkoutsDisplay({ data }) {
 
     return (
         <div>
-            <Accordion style={{ display: 'flex', flexDirection: 'column', gap: '4px'}}>
-                {paginatedWorkouts.map((workout, index) => (
-                    <AccordionTab key={index} headerTemplate={renderHeader(workout)}>
-                        <div style={{display: 'flex', flexDirection: 'column', gap: '12px', padding: '12px'}}>
-                            {workout.exercises.map((exercise, index) => (
-                                renderExerciseRecord(exercise, index)
-                            ))}
-                        </div>
-                    </AccordionTab>
-                ))}
-            </Accordion>
+            {paginatedWorkouts.length === 0 ? (
+                <div style={{ textAlign: 'left', padding: '12px', color: 'gray', borderTop: '1px solid #dde1e6', borderBottom: '1px solid #dde1e6'}}>
+                    No workouts found.
+                </div>
+            ) : (
+                <Accordion style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    {paginatedWorkouts.map((workout, index) => (
+                        <AccordionTab key={index} headerTemplate={renderHeader(workout)}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '12px' }}>
+                                {workout.exercises.map((exercise, index) => (
+                                    renderExerciseRecord(exercise, index)
+                                ))}
+                            </div>
+                        </AccordionTab>
+                    ))}
+                </Accordion>
+            )}
+
 
             <Paginator
                 first={currentPage * pageSize}

@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, query, onSnapshot, addDoc, doc, getDoc, getDocs, where } from "firebase/firestore";
+import { getFirestore, collection, query, onSnapshot, addDoc, doc, getDoc, getDocs, where, updateDoc, deleteDoc } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -56,7 +56,26 @@ export function fetchExerciseData(userId, exerciseName, callback) {
 export async function logExercise(userId, exercise) {
     try {
         const docRef = await addDoc(collection(db, "Exercises"), {...exercise, userId});
-        return docRef.id;
+    } catch (error) {
+        throw new Error("Error:" + error.message);
+    }
+};
+
+// Edit an existing exercise in the database
+export async function editExercise(exerciseId, updatedExercise) {
+    try {
+        const docRef = doc(db, "Exercises", exerciseId);
+        await updateDoc(docRef, updatedExercise);
+    } catch (error) {
+        throw new Error("Error:" + error.message);
+    }
+};
+
+// Delete an exercise from the database
+export async function deleteExercise(exerciseId) {
+    try {
+        const docRef = doc(db, "Exercises", exerciseId);
+        await deleteDoc(docRef);
     } catch (error) {
         throw new Error("Error:" + error.message);
     }

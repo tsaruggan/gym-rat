@@ -177,18 +177,18 @@ function ExercisesDisplay({ data }) {
                     header="Weight"
                     field="weightRange"
                     headerStyle={{ textAlign: 'center' }}
-                    style={{ minWidth: '112px', textAlign: 'left' }}
+                    style={{ minWidth: '48px',  flexGrow: 1, whiteSpace: 'nowrap', textAlign: 'left', paddingRight: '16px' }}
                 />
                 <Column
                     header="Sets"
                     body={renderSets}
-                    style={{ minWidth: '48px', textAlign: 'left' }}
+                    style={{ minWidth: '48px',  flexGrow: 1, whiteSpace: 'nowrap', textAlign: 'left', paddingRight: '12px' }}
                 />
                 <Column
                     header="Reps"
                     field="repRange"
                     headerStyle={{ textAlign: 'left' }}
-                    style={{ minWidth: '48px', textAlign: 'left' }}
+                    style={{ minWidth: '48px',  flexGrow: 1, whiteSpace: 'nowrap', textAlign: 'left', paddingRight: '12px' }}
                 />
                 <Column
                     field="date"
