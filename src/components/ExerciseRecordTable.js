@@ -1,12 +1,14 @@
 import React from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { PrimeIcons } from 'primereact/api';
 
 export default function ExerciseRecordTable({ exercise }) {
     
     const renderWarmUpFlag = (rowData) => {
         if (rowData.warmUp === true) {
-            return <span>❄️</span>;
+            return <span style={{ color: "rgba(0, 200, 255, 1)"}}>✱</span>;
+            // return <i className={PrimeIcons.ASTERISK} style={{ color: "rgba(0, 200, 255, 1)"}}></i>;
         } else {
             return <span> </span>
         }

@@ -106,7 +106,7 @@
   border-color: gray;
 }
 
-.addSetButton, .logExerciseButton {
+.addSetButton, .logExerciseButton, .editExerciseButton, .deleteExerciseButton {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,7 +115,6 @@
   box-shadow: none;
   padding: 16px;
   height: 36px;
-  /* border-radius: 8px; */
 }
 
 .addSetButton {
@@ -133,7 +132,6 @@
 
 .logExerciseButton {
   border: solid 2px black;
-  /* background-color: #387D7A; */
   background-color: #339989;
   color: black;
   font-weight: bold;
@@ -151,6 +149,47 @@
   color: gray;
   border: solid 1px gray;
   font-weight: normal;
+}
+
+.editExerciseButton {
+  border: solid 2px black;
+  background-color: #6B7FD7; 
+  color: black;
+  font-weight: bold;
+}
+
+.editExerciseButton:hover {
+  background-color: #020887;
+  border: solid 2px black;
+  font-weight: bolder;
+  /* FF570A */
+  color: #EFCB68
+}
+
+.editExerciseButton:disabled {
+  background-color: rgb(107, 127, 215, 0.5);
+  color: gray;
+  border: solid 1px gray;
+  font-weight: normal;
+}
+
+.deleteExerciseButton {
+  border: solid 2px black;
+  /* 89A6FB */
+  /* background-color: #FF1B1C;  */
+  background-color: #E63946;
+  color: white;
+  font-weight: bold;
+}
+
+.deleteExerciseButton:hover {
+  border: 2px solid #E84855 !important;
+  background-color: #FF1B1C;
+}
+
+.divider {
+  border: none;
+  border-top: 2px dashed #ccc;
 }
 
 .dateTimePickerInput {
@@ -234,4 +273,14 @@
   text-decoration: underline solid;
   color: black;
   cursor: pointer;
+}
+
+.editButton {
+  background-color: transparent;
+  border: none;
+  color: #6B7FD7;
+  cursor: pointer;
+  height: 18px;
+  width: 18px;
+  box-shadow: none;
 }

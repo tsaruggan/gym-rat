@@ -3,11 +3,11 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from 'next/router';
 import { fetchAllData } from "@/utils/firebase";
+import { Skeleton } from 'primereact/skeleton';
 import ExercisesDisplay from '../../components/ExercisesDisplay';
 import WorkoutsDisplay from "../../components/WorkoutsDisplay";
 import AppLayout from "@/components/AppLayout";
 import styles from "@/styles/Home.module.css";
-import { Skeleton } from 'primereact/skeleton';
 
 export default function Home() {
   const router = useRouter();

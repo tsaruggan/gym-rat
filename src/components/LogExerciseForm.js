@@ -5,25 +5,35 @@ import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
 import styles from "@/styles/Home.module.css";
 
-const defaultSets = [ { weight: 55, reps: 8, warmUp: false }, { weight: 55, reps: 8, warmUp: false }, { weight: 55, reps: 8, warmUp: false } ];
+const defaultSets = [{ weight: 55, reps: 8, warmUp: false }, { weight: 55, reps: 8, warmUp: false }, { weight: 55, reps: 8, warmUp: false }];
 
-const getCurrentDate = () => new Date().toLocaleString('en-CA', { hour12: false });
-
-const initializeSets = (initialSets = defaultSets) => { 
-    return initialSets.map(set => ({ ...set, key: generateUniqueKey() })); 
+const initializeSets = (initialSets = defaultSets) => {
+    return initialSets.map(set => ({ ...set, key: generateUniqueKey() }));
 };
 
-const initializeDate = (initialDate = getCurrentDate()) => {
-    return initialDate.slice(0, 17).replace(', ', 'T');
+const generateUniqueKey = () => Math.random().toString();
+
+const initializeDate = (initialDate) => {
+    const date = initialDate ? new Date(initialDate) : new Date();
+    return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+        .toISOString()
+        .slice(0, 16);
 }
 
-const generateUniqueKey = () =>  Math.random().toString();
-
-const LogExerciseForm = ({ hideExerciseName = false, initialExerciseName = '', initialSets = defaultSets, initialDate = getCurrentDate(), onLog }) => {
+export default function LogExerciseForm({
+    initialExerciseName = '',
+    initialSets = defaultSets,
+    initialDate,
+    hideExerciseName = false,
+    edit = false,
+    onLog,
+    onEdit,
+    onDelete
+}) {
     const [exerciseName, setExerciseName] = useState(initialExerciseName);
     const [sets, setSets] = useState(initializeSets(initialSets));
     const [date, setDate] = useState(initializeDate(initialDate));
-    
+
     const renderSet = (index) => {
         const set = sets[index];
         const weight = set.weight;
@@ -56,9 +66,13 @@ const LogExerciseForm = ({ hideExerciseName = false, initialExerciseName = '', i
                         <Button
                             onClick={() => updateSet(index, 'warmUp', !sets[index].warmUp)}
                             className={styles.warmUpToggle}
-                            style={{ border: warmUp ? "solid 2px rgba(0, 200, 255, 1)" : "dashed 1px rgba(0, 133, 170, 0.66)" }}
+                            style={{ 
+                                border: warmUp ? "solid 2px rgba(0, 200, 255, 1)" : "dashed 1px rgba(0, 133, 170, 0.66)", 
+                                color: "rgba(0, 200, 255, 1)",
+                                background: warmUp ? "linear-gradient(to bottom, rgba(0, 200, 255, 0.2), rgba(249, 105, 0, 0.2))" : "transparent",
+                            }}
                         >
-                            <span style={{ opacity: warmUp ? 1 : 0.7, filter: warmUp ? 'none' : 'grayscale(100%)' }}>❄️</span>
+                            <span style={{ opacity: warmUp ? 1 : 0.7, filter: warmUp ? 'none' : 'grayscale(100%)' }}>✱</span>
                         </Button>
                     </div>
                     <Button
@@ -124,11 +138,53 @@ const LogExerciseForm = ({ hideExerciseName = false, initialExerciseName = '', i
         }
     };
 
-    return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            {!hideExerciseName && (
+    const editExercise = () => {
+        if (validateForm()) {
+            const formattedDate = new Date(date).toISOString();
+            const formattedSets = sets.map(({ key, ...rest }) => rest);
+            onEdit({
+                "name": exerciseName,
+                "date": formattedDate,
+                "sets": formattedSets
+            });
+        }
+    };
+
+    const deleteExercise = () => {
+        onDelete();
+    };
+
+    const renderNewExerciseForm = () => {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                {!hideExerciseName && (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                        <label htmlFor="exerciseName">{initialExerciseName == "" ? "New Exercise" : "Exercise Name"}</label>
+                        <InputText
+                            id="exerciseName"
+                            value={exerciseName}
+                            onChange={(e) => setExerciseName(e.target.value)}
+                            style={{ padding: '4px' }}
+                        />
+                    </div>
+                )}
+
+                {sets.map((_, index) => renderSet(index))}
+
+                <Button className={styles.addSetButton} onClick={addSet}>+ Add Set +</Button>
+
+                <input type="datetime-local" value={date} onChange={(e) => setDate(e.target.value)} className={styles.dateTimePickerInput} />
+
+                <Button className={styles.logExerciseButton} disabled={!validateForm()} onClick={logExercise}>Log Exercise</Button>
+            </div>
+        );
+    }
+
+    const renderEditExerciseForm = () => {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                    <label htmlFor="exerciseName">{initialExerciseName == "" ? "New Exercise" : "Exercise Name"}</label>
+                    <label htmlFor="exerciseName">{"Edit Exercise"}</label>
                     <InputText
                         id="exerciseName"
                         value={exerciseName}
@@ -136,17 +192,26 @@ const LogExerciseForm = ({ hideExerciseName = false, initialExerciseName = '', i
                         style={{ padding: '4px' }}
                     />
                 </div>
-            )}
 
-            {sets.map((_, index) => renderSet(index))}
+                {sets.map((_, index) => renderSet(index))}
 
-            <Button className={styles.addSetButton} onClick={addSet}>+ Add Set +</Button>
+                <Button className={styles.addSetButton} onClick={addSet}>+ Add Set +</Button>
 
-            <input type="datetime-local" value={date} onChange={(e) => setDate(e.target.value)} className={styles.dateTimePickerInput} />
+                <input type="datetime-local" value={date} onChange={(e) => setDate(e.target.value)} className={styles.dateTimePickerInput} />
 
-            <Button className={styles.logExerciseButton} disabled={!validateForm()} onClick={logExercise}>Log Exercise</Button>
-        </div>
-    );
-};
+                <Button className={styles.editExerciseButton} disabled={!validateForm()} onClick={editExercise}>Edit Exercise</Button>
+                
+                <hr className={styles.divider} />
 
-export default LogExerciseForm;
+                <Button className={styles.deleteExerciseButton} onClick={deleteExercise}>Delete Exercise</Button>
+            </div>
+        );
+    }
+
+    if (edit) {
+        return renderEditExerciseForm();
+    } else {
+        return renderNewExerciseForm();
+    }
+}
+

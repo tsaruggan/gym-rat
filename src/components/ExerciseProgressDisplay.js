@@ -3,6 +3,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { Chart } from 'primereact/chart';
 import 'chartjs-adapter-date-fns';
 import regression from 'regression';
+import { PrimeIcons } from 'primereact/api';
 
 // change default font
 import { Chart as ChartJS, Legend } from 'chart.js';
@@ -278,7 +279,7 @@ export default function ExerciseProgressDisplay({ history }) {
             const formattedSets = sets.map((set) => {
                 let str = `${set.reps} × ${set.weight} lb`;
                 if (set.warmUp) {
-                    return str + ' ❄️';
+                    return str + ' ✱';
                 }
                 return str;
             });

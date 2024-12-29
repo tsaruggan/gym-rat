@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Paginator } from 'primereact/paginator';
 import ExerciseRecordTable from "./ExerciseRecordTable";
+import EditExercisePopup from "./EditExercisePopup";
 import styles from "@/styles/Home.module.css";
 
 export default function ExerciseHistoryDisplay({ history }) {
@@ -35,7 +36,10 @@ export default function ExerciseHistoryDisplay({ history }) {
 
         return (
             <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%', border: 'solid 1px #dee2e6', padding: '12px' }}>
-                <span>{formatDateTime(exercise.date)}</span>
+                <span>
+                    {formatDateTime(exercise.date)} 
+                    <span style={{ paddingLeft: '12px' }}><EditExercisePopup exercise={exercise}/></span> 
+                </span>
                 <ExerciseRecordTable exercise={exercise} />
             </div>
         );

@@ -105,7 +105,8 @@ function ExercisesDisplay({ data }) {
 
     const renderSets = (rowData) => {
         if (rowData.warmUpSets > 0) {
-            return <span>{rowData.workingSets}<sup>+{rowData.warmUpSets}</sup></span>;
+            // return <span>{rowData.workingSets}<sup>+{rowData.warmUpSets}</sup></span>;
+            return <span>{rowData.workingSets}+{rowData.warmUpSets}<sup>✱</sup></span>;
         } else {
             return <span>{rowData.workingSets}</span>
         }
