@@ -15,12 +15,31 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Fetch requests
-export function fetchData(userId, callback) {
+// Fetch all data for a given user
+export function fetchAllData(userId, callback) {
     const exercisesRef = collection(db, 'Exercises');
     const q = query(
         exercisesRef, 
         where('userId', '==', userId),
+    );
+
+    // Listen to changes in the 'exercises' collection
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+        const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        callback(data); // Passing updated data to the callback function
+    });
+
+    // Return the unsubscribe function so you can detach the listener later
+    return unsubscribe;
+};
+
+// Fetch specific exercise data for a given user 
+export function fetchExerciseData(userId, exerciseName, callback) {
+    const exercisesRef = collection(db, 'Exercises');
+    const q = query(
+        exercisesRef, 
+        where('userId', '==', userId),
+        where('name', '==', exerciseName)
     );
 
     // Listen to changes in the 'exercises' collection
@@ -39,29 +58,15 @@ export async function logExercise(userId, exercise) {
         const docRef = await addDoc(collection(db, "Exercises"), {...exercise, userId});
         return docRef.id;
     } catch (error) {
-        throw new Error("Error logging exercise: " + error.message);
+        throw new Error("Error:" + error.message);
     }
 };
 
 // Check if a user id exists
-export async function checkUserExists(id) {
-    const docRef = doc(db, "Users", id);
+export async function checkUserExists(userId) {
+    const docRef = doc(db, "Users", userId);
     const docSnap = await getDoc(docRef);
     const exists = docSnap.exists()
-    return exists;
-}
-
-// Check if a exercise exists
-export async function checkExerciseExists(userId, exerciseName) {
-    const exercisesRef = collection(db, 'Exercises');
-    const q = query(
-        exercisesRef, 
-        where('userId', '==', userId),
-        where('name', '==', exerciseName)
-    );
-
-    const querySnapshot = await getDocs(q);
-    const exists = !querySnapshot.empty;
     return exists;
 }
 

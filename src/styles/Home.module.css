@@ -183,7 +183,7 @@
 }
 
 .parent {
-  /* height: 100vh; */
+  height: 100vh;
   overflow: auto;
 }
 
@@ -220,4 +220,18 @@
 
 .headerButton:hover {
   background-color: rgb(242, 241, 241);
+}
+
+.createNewExerciseLink {
+  text-decoration: underline dashed;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 8px;
+  font-weight: bold;
+  display: inline;
+}
+
+.createNewExerciseLink:hover {
+  text-decoration: underline solid;
+  color: black;
+  cursor: pointer;
 }

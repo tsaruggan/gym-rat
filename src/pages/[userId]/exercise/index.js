@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import LogExerciseForm from "@/components/LogExerciseForm";
 import { logExercise } from "@/utils/firebase";
+import AppLayout from "@/components/AppLayout";
 
 export default function NewExercisePage() {
     const router = useRouter();
@@ -18,10 +19,12 @@ export default function NewExercisePage() {
     };
 
     return (
-        <div className={styles.page}>
-            <main className={styles.main} style={{ maxWidth: '400px', padding: '12px' }}>
-                <LogExerciseForm onLog={onLog} />
-            </main>
-        </div>
+        <AppLayout userId={userId}>
+            <div className={styles.page}>
+                <main className={styles.main} style={{ maxWidth: '400px', padding: '12px' }}>
+                    <LogExerciseForm onLog={onLog} />
+                </main>
+            </div>
+        </ AppLayout>
     );
 }

@@ -1,78 +1,83 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
-import ExercisesDisplay from '../../components/ExercisesDisplay';
-import WorkoutsDisplay from "../../components/WorkoutsDisplay";
 import Link from "next/link";
 import { useRouter } from 'next/router';
-import { fetchData, checkUserExists } from "@/utils/firebase";
+import { fetchAllData } from "@/utils/firebase";
+import ExercisesDisplay from '../../components/ExercisesDisplay';
+import WorkoutsDisplay from "../../components/WorkoutsDisplay";
+import AppLayout from "@/components/AppLayout";
+import styles from "@/styles/Home.module.css";
+import { Skeleton } from 'primereact/skeleton';
 
 export default function Home() {
   const router = useRouter();
   const { userId } = router.query;
-  const [userExists, setUserExists] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  
-  // Check if the user exists
+
   useEffect(() => {
-    const validateQueryParams = async () => {
-      const exists = await checkUserExists(userId);
-  
-      // Redirect if user doesn't exist
-      if (exists === false) {
-        router.push('/404');
-      }
-      setUserExists(exists);
-    };
+    const subscribeToData = async () => {
+      // Fetch + subscribe to exercises data
+      const unsubscribe = fetchAllData(userId, (exercisesData) => {
+        setData(exercisesData);
+        setLoading(false);
+      });
+      return () => { unsubscribe() };
+    }
 
     if (userId) {
-      validateQueryParams();
+      subscribeToData();
     }
   }, [userId]);
 
-  // Fetch exercises data if the user exists
-  useEffect(() => {
-    // Exit early if user existence is unknown or false
-    if (userExists === null || userExists === false) {
-      return () => {};
-    }
+  const renderLoadingSkeleton = () => {
+    return (
+      <main className={styles.main}>
+        <div className={styles.homePageSection}>
+          <Skeleton width="200px"  height="24px"></Skeleton>
+          <Skeleton width="100%" height="200px"></Skeleton>
+        </div>
+        <div className={styles.homePageSection}>
+          <Skeleton width="200px"  height="24px"></Skeleton>
+          <Skeleton width="100%" height="200px"></Skeleton>
+        </div>
+      </main>
+    );
+  }
 
-    // Fetch + subscribe to exercises data
-    const unsubscribe = fetchData(userId, (exercisesData) => {
-      setData(exercisesData);
-    });
-
-    // Clean up listener on component unmount
-    return () => {
-      unsubscribe(); 
-    };
-  }, [userExists]);
+  const renderAppContent = () => {
+    return (
+      <main className={styles.main}>
+        <div className={styles.homePageSection}>
+          <h2>Exercises</h2>
+          <Link href={`/${userId}/exercise`} >
+            <div className={styles.createNewExercise}>Create & log a new exercise...</div>
+          </Link>
+          <ExercisesDisplay data={data} />
+        </div>
+        <div className={styles.homePageSection}>
+          <h2>Workouts</h2>
+          <WorkoutsDisplay data={data} />
+        </div>
+      </main>
+    );
+  }
 
   return (
     <>
       <Head>
-        <title>Gym Rat</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <title>Gym Rat</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <div className={styles.page}>
-        {userId && userExists && (
-          <main className={styles.main}>
-            <div className={styles.homePageSection}>
-              <h2>Exercises</h2>
-
-              <Link href={`${userId}/exercise`} >
-                <div className={styles.createNewExercise}>Create & log a new exercise...</div>
-              </Link>
-              
-              <ExercisesDisplay data={data} />
-            </div>
-            <div className={styles.homePageSection}>
-              <h2>Workouts</h2>
-              <WorkoutsDisplay data={data} />
-            </div>
-          </main>
-        )}
-      </div>
+      <AppLayout userId={userId}>
+        <div className={styles.page}>
+          { loading ? (
+            renderLoadingSkeleton()
+          ) : (
+            renderAppContent()
+          )}
+        </div>
+      </AppLayout>
     </>
   );
 }
