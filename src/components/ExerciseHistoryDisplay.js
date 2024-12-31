@@ -59,6 +59,7 @@ export default function ExerciseHistoryDisplay({ history }) {
                 totalRecords={history.length}
                 onPageChange={(e) => setCurrentPage(e.page)}
                 template={paginatorTemplate}
+                style={{ borderRadius: '0' }}
             />
         </div>
     );

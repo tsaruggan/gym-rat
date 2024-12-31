@@ -1,14 +1,40 @@
-html,
-body {
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+[data-theme="light"] {
+  --grid-color: rgba(0, 0, 0, 0.1);
+  --graph-color1: rgb(59, 40, 204);
+  --graph-color2: rgb(255, 159, 28);
+  --red: rgb(255, 59, 48);
+  --green: rgb(52, 199, 89);
+  --gray: rgb(174, 174, 178);
+}
+
+[data-theme="dark"] {
+  --background-color: #000000;
+  --text-color: #ffffff;
+  --grid-color: rgba(255, 255, 255, 0.2);
+  --graph-color1: #5B48C5;
+  --graph-color2: rgb(255, 159, 28);
+  --red: rgb(255, 59, 48);
+  --green: rgb(52, 199, 89);
+  --gray: #97979A;
+}
+
+html, body {
   max-width: 100vw;
   overflow-x: hidden;
   font-family: 'Geist Mono', sans-serif;
 }
 
 body {
-  font-family: Roboto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.5s ease !important;
 }
 
 * {
@@ -16,6 +42,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'GeistMono', sans-serif;
+  border-radius: 0 !important;
 }
 
 a {

@@ -10,13 +10,6 @@ import { Chart as ChartJS, Legend } from 'chart.js';
 import { GeistMono } from "geist/font/mono";
 ChartJS.defaults.font.family = GeistMono.style.fontFamily;
 
-// colors
-const gray = 'rgb(174, 174, 178)';
-const green = 'rgb(52, 199, 89)';
-const red = 'rgb(255, 59, 48)';
-const color1 = 'rgb(59, 40, 204)';
-const color2 = 'rgb(255, 159, 28)';
-
 const timeRangeOptions = [
     { label: '2 weeks', value: 14 },
     { label: '1 month', value: 30 },
@@ -24,11 +17,23 @@ const timeRangeOptions = [
     { label: '6 months', value: 180 }
 ];
 
+
 export default function ExerciseProgressDisplay({ history }) {
     const [data, setData] = useState([]);
     const [volumeLoadChartData, setVolumeLoadChartData] = useState({});
     const [averageWeightChartData, setAverageWeightChartData] = useState({});
     const [timeRange, setTimeRange] = useState(timeRangeOptions[0].value);
+
+    // colors
+    const getColor = (colorVar) => {
+        return getComputedStyle(document.documentElement).getPropertyValue(colorVar).trim();
+    };
+    const color1 = getColor('--graph-color1');
+    const color2 = getColor('--graph-color2');
+    const gridColor = getColor('--grid-color');
+    const red = getColor('--red');
+    const green = getColor('--green');
+    const gray = getColor('--gray');
 
     useEffect(() => {
         if (history && history.length > 0) {
@@ -170,9 +175,11 @@ export default function ExerciseProgressDisplay({ history }) {
                 type: 'time',
                 time: { unit: 'day', tooltipFormat: 'PPP' },
                 title: { display: false, text: 'Date' },
+                grid: { color: gridColor },
             },
             y: {
                 title: { display: false, text: 'Volume Load (lb)' },
+                grid: { color: gridColor },
                 display: true,
                 ticks: { 
                     display: true,
@@ -212,9 +219,11 @@ export default function ExerciseProgressDisplay({ history }) {
                 type: 'time',
                 time: { unit: 'day', tooltipFormat: 'PPP' },
                 title: { display: false, text: 'Date' },
+                grid: { color: gridColor },
             },
             y: {
                 title: { display: false, text: 'Average Weight (lb)' },
+                grid: { color: gridColor },
                 display: true,
                 ticks: { 
                     display: true,
@@ -316,7 +325,7 @@ export default function ExerciseProgressDisplay({ history }) {
                     value={timeRange} 
                     options={timeRangeOptions} 
                     onChange={(e) => setTimeRange(e.value)} 
-                    style={{ padding: '4px', width: '128px' }} 
+                    style={{ padding: '4px', width: 'auto', borderRadius: '0' }} 
                 />
             </div>
             

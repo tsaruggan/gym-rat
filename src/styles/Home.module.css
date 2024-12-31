@@ -1,4 +1,4 @@
-.page {
+.page {  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,10 +35,9 @@
   color: rgba(0, 0, 0, 0.6);
   background-color: rgba(17, 116, 192, 0.05);
   cursor: pointer;
-
   border-style: dashed;
   border-width: 2px;
-  border-radius: 8px;
+  border-radius: 8px !important;
 }
 
 .createNewExercise:hover {
@@ -46,6 +45,17 @@
   color: rgba(0, 0, 0);
   background-color: rgba(17, 116, 192, 0.1);
   font-weight: bold;
+}
+
+[data-theme="dark"] .createNewExercise {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(17, 116, 192, 0.2);
+}
+
+/* Hover effects for dark mode */
+[data-theme="dark"] .createNewExercise:hover {
+  color: rgba(255, 255, 255); 
+  background-color: rgba(17, 116, 192, 0.3); 
 }
 
 .homePageSection {
@@ -77,7 +87,7 @@
   align-items: center;
   line-height: 1em;
   box-shadow: none;
-  border-radius: 1000px;
+  border-radius: 1000px !important;
 }
 
 .warmUpToggle:hover {
@@ -93,6 +103,7 @@
   width: auto;
   height: 2em;
   aspect-ratio: 1;
+  border-radius: 0;
 }
 
 .trashButton:hover {
@@ -115,11 +126,12 @@
   box-shadow: none;
   padding: 16px;
   height: 36px;
+  border-radius: 0;
 }
 
 .addSetButton {
   border: solid 1px;
-  background-color: white;
+  background-color: transparent;
   color: black;
 }
 
@@ -130,6 +142,18 @@
   color: #635380;
 }
 
+[data-theme="dark"] .addSetButton {
+  background-color: transparent;
+  color: white;
+}
+
+[data-theme="dark"] .addSetButton:hover {
+  background-color: rgb(17, 116, 192, 0.1);
+  border: solid 2px white;
+  font-weight: bold;
+  color: yellowgreen;
+}
+
 .logExerciseButton {
   border: solid 2px black;
   background-color: #339989;
@@ -138,7 +162,7 @@
 }
 
 .logExerciseButton:hover {
-  background-color: rgb(99, 83, 128);
+  background-color: #635380;
   border: solid 2px black;
   font-weight: bolder;
   color: rgb(154, 205, 50);
@@ -149,6 +173,19 @@
   color: gray;
   border: solid 1px gray;
   font-weight: normal;
+}
+
+[data-theme="dark"] .logExerciseButton {
+  border: solid 2px white;
+  background-color: #225049;
+  color: white;
+}
+
+[data-theme="dark"] .logExerciseButton:hover {
+  background-color: #473D5A;
+  border: solid 2px white;
+  font-weight: bolder;
+  color: yellowgreen;
 }
 
 .editExerciseButton {
@@ -162,7 +199,6 @@
   background-color: #020887;
   border: solid 2px black;
   font-weight: bolder;
-  /* FF570A */
   color: #EFCB68
 }
 
@@ -173,10 +209,20 @@
   font-weight: normal;
 }
 
+[data-theme="dark"] .editExerciseButton {
+  border: solid 2px white;
+  background-color: #5E6FBA; 
+  color: white;
+}
+
+[data-theme="dark"] .editExerciseButton:hover {
+  background-color: #192287;
+  border: solid 2px white;
+  color: #EFCB68
+}
+
 .deleteExerciseButton {
   border: solid 2px black;
-  /* 89A6FB */
-  /* background-color: #FF1B1C;  */
   background-color: #E63946;
   color: white;
   font-weight: bold;
@@ -185,6 +231,17 @@
 .deleteExerciseButton:hover {
   border: 2px solid #E84855 !important;
   background-color: #FF1B1C;
+}
+
+[data-theme="dark"] .deleteExerciseButton {
+  border: solid 2px white;
+  background-color: #C7333F;
+  color: white;
+}
+
+[data-theme="dark"] .deleteExerciseButton:hover {
+  border: 2px solid #C8404B !important;
+  background-color: #DC1A1B;
 }
 
 .divider {
@@ -221,6 +278,16 @@
   font-weight: bold;
 }
 
+[data-theme="dark"] .dateTimePickerInput {
+  border: solid 1px white;
+  background-color: #1b2030;
+}
+
+[data-theme="dark"] .dateTimePickerInput:hover {
+  border: solid 2px white;
+  background-color: #222838;
+}
+
 .parent {
   height: 100vh;
   overflow: auto;
@@ -240,6 +307,10 @@
   justify-content: space-around;
 }
 
+[data-theme="dark"] .header {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
 .headerContent {
   display: flex;
   justify-content: space-between;
@@ -254,11 +325,17 @@
 .headerButton {
   padding: 12px;
   background-color: transparent;
-  border-radius: 8px;
+  border: solid 1px transparent;
+  border-radius: 8px !important;
 }
 
 .headerButton:hover {
   background-color: rgb(242, 241, 241);
+}
+
+[data-theme="dark"] .headerButton:hover {
+  background-color: transparent;
+  border: solid 1px yellowgreen;
 }
 
 .createNewExerciseLink {
@@ -271,7 +348,7 @@
 
 .createNewExerciseLink:hover {
   text-decoration: underline solid;
-  color: black;
+  color: var(--text-color);
   cursor: pointer;
 }
 

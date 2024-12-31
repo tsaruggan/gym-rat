@@ -111,6 +111,7 @@ export default function WorkoutsDisplay({ data }) {
                 totalRecords={workoutData.length}
                 onPageChange={(e) => setCurrentPage(e.page)}
                 template={paginatorTemplate}
+                style={{ borderRadius: '0' }}
             />
         </div>
     );

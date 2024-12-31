@@ -53,14 +53,14 @@ export default function LogExerciseForm({
                             mode="decimal"
                             minFractionDigits={0}
                             maxFractionDigits={1}
-                            inputStyle={{ width: '96px', padding: '4px' }}
+                            inputStyle={{ width: '96px', padding: '4px', borderRadius: '0' }}
                             suffix=" lb"
                         />
                         <Dropdown
                             value={reps}
                             options={[...Array(24).keys()].map(i => i + 1)}
                             onChange={(e) => updateSet(index, 'reps', e.value)}
-                            style={{ width: '96px', padding: '4px' }}
+                            style={{ width: '96px', padding: '4px', borderRadius: '0' }}
                             panelStyle={{ padding: '4px' }}
                         />
                         <Button

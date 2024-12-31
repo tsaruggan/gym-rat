@@ -44,7 +44,7 @@ export default function ExercisePage() {
 
     const renderLogExerciseForm = () => {
         return (
-            <div style={{ width: '100%', display: 'flex', justifyContent: 'space-around', padding: '24px', border: 'dashed 1px black' }}>
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'space-around', padding: '24px', border: 'dashed 1px' }}>
                 <div style={{ width: '100%', maxWidth: '400px' }}>
                     <LogExerciseForm
                         initialExerciseName={exerciseName}
