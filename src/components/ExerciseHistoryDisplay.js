@@ -4,7 +4,7 @@ import ExerciseRecordTable from "./ExerciseRecordTable";
 import EditExercisePopup from "./EditExercisePopup";
 import styles from "@/styles/Home.module.css";
 
-export default function ExerciseHistoryDisplay({ history }) {
+export default function ExerciseHistoryDisplay({ history, units="lb" }) {
     // paginator stuff
     const [currentPage, setCurrentPage] = useState(0);
     const pageSize = 3;
@@ -38,9 +38,9 @@ export default function ExerciseHistoryDisplay({ history }) {
             <div key={index} style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%', border: 'solid 1px #dee2e6', padding: '12px' }}>
                 <span>
                     {formatDateTime(exercise.date)} 
-                    <span style={{ paddingLeft: '12px' }}><EditExercisePopup exercise={exercise}/></span> 
+                    <span style={{ paddingLeft: '12px' }}><EditExercisePopup exercise={exercise} units={units}/></span> 
                 </span>
-                <ExerciseRecordTable exercise={exercise} />
+                <ExerciseRecordTable exercise={exercise} units={units}/>
             </div>
         );
     }
@@ -59,7 +59,7 @@ export default function ExerciseHistoryDisplay({ history }) {
                 totalRecords={history.length}
                 onPageChange={(e) => setCurrentPage(e.page)}
                 template={paginatorTemplate}
-                style={{ borderRadius: '0' }}
+                className={styles.paginator}
             />
         </div>
     );

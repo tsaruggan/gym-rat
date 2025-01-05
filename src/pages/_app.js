@@ -2,15 +2,14 @@ import "@/styles/globals.css";
 import Head from "next/head";
 import { GeistMono } from "geist/font/mono";
 import { PrimeReactProvider } from 'primereact/api';
-import { PrimeReactContext } from 'primereact/api';
 import "primereact/resources/primereact.min.css";
 import 'primeicons/primeicons.css';
-import { useRouter } from "next/router";
-import { useState, useEffect, useContext } from 'react';
-
+import UserProvider from "@/components/UserProvider";
+import { useRouter } from 'next/router';
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
+  const isAppPage = router.pathname.startsWith("/[userId]");
 
   return (
     <div className={GeistMono.className}>
@@ -20,10 +19,15 @@ export default function App({ Component, pageProps }) {
         <meta name="description" content="weightlifting tracker" />
         <meta name="theme-color" content="#ffffff" />
         <link rel="manifest" href="/manifest.json" />
-        {/* <link id="theme-link" rel="stylesheet" type="text/css" href="/themes/nano/theme.css" /> */}
       </Head>
       <PrimeReactProvider>
-        <Component {...pageProps} />
+        {isAppPage ? (
+          <UserProvider userId={router.query.userId}>
+            <Component {...pageProps} />
+          </UserProvider>
+        ) : (
+          <Component {...pageProps} />
+        )}
       </PrimeReactProvider>
     </div>
   );

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Dialog } from 'primereact/dialog';
 import { Button } from "primereact/button";
-import styles from "@/styles/Home.module.css";
 import LogExerciseForm from "./LogExerciseForm";
 import { editExercise, deleteExercise } from "@/utils/firebase";
+import styles from "@/styles/Home.module.css";
 
-export default function EditExercisePopup({ exercise }) {
+export default function EditExercisePopup({ exercise, units="lb" }) {
     const [visible, setVisible] = useState(false);
 
     const onEdit = async (updatedExercise) => {
@@ -47,6 +47,7 @@ export default function EditExercisePopup({ exercise }) {
                         edit={true}
                         onEdit={onEdit}
                         onDelete={onDelete}
+                        units={units}
                     />
                 </div>
             </Dialog>

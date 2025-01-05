@@ -4,8 +4,9 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import styles from "@/styles/Home.module.css";
+import { lbToKg } from "@/utils/conversions";
 
-function ExercisesDisplay({ data }) {
+function ExercisesDisplay({ data, units='lb' }) {
     const [exerciseData, setExerciseData] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -39,7 +40,6 @@ function ExercisesDisplay({ data }) {
                 const exercise = {};
                 exercise.userId = item.userId;
                 exercise.name = item.name;
-                exercise.weight = calculateAverageWorkingWeight(workingSets);
                 exercise.workingSets = workingSets.length;
                 exercise.warmUpSets = item.sets.length - workingSets.length;
                 exercise.reps = calculateAverageWorkingReps(workingSets);
@@ -61,10 +61,15 @@ function ExercisesDisplay({ data }) {
             maxWeight = Math.max(maxWeight, set.weight);
         }
 
-        if (minWeight == maxWeight) {
-            return `${minWeight} lb`;
+        if (units == 'kg') {
+            minWeight = lbToKg(minWeight);
+            maxWeight = lbToKg(maxWeight);
         }
-        return `${minWeight}-${maxWeight} lb`;
+
+        if (minWeight == maxWeight) {
+            return `${minWeight} ${units}`;
+        }
+        return `${minWeight}-${maxWeight} ${units}`;
     }
 
     const formatRepRange = (workingSets) => {
@@ -163,6 +168,7 @@ function ExercisesDisplay({ data }) {
                 globalFilterFields={['name', 'date']}
                 header={header}
                 emptyMessage={emptyMessage}
+                paginatorClassName={styles.paginator}
             >
                 <Column
                     header="Exercise"

@@ -1,17 +1,18 @@
-import styles from "@/styles/Home.module.css";
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import LogExerciseForm from "@/components/LogExerciseForm";
-import { logExercise } from "@/utils/firebase";
 import AppLayout from "@/components/AppLayout";
+import LogExerciseForm from "@/components/LogExerciseForm";
+import { useRouter } from "next/router";
+import { logExercise } from "@/utils/firebase";
+import { useUser } from "@/components/UserProvider";
+import styles from "@/styles/Home.module.css";
 
 export default function NewExercisePage() {
     const router = useRouter();
     const { userId } = router.query;
+    const { units } = useUser();
 
     const onLog = async (exercise) => {
         try {
-            const exerciseId = await logExercise(userId, exercise);
+            await logExercise(userId, exercise);
             router.replace(`/${userId}/exercise/${exercise.name}`);
         } catch (error) {
             console.error(error.message);
@@ -19,12 +20,12 @@ export default function NewExercisePage() {
     };
 
     return (
-        <AppLayout userId={userId}>
+        <AppLayout>
             <div className={styles.page}>
                 <main className={styles.main} style={{ maxWidth: '400px', padding: '12px' }}>
-                    <LogExerciseForm onLog={onLog} />
+                    <LogExerciseForm onLog={onLog} units={units}/>
                 </main>
             </div>
-        </ AppLayout>
+        </AppLayout>
     );
 }

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useRouter } from 'next/router';
-import styles from "@/styles/Home.module.css";
+import Link from "next/link";
+import { Skeleton } from "primereact/skeleton";
+import AppLayout from "@/components/AppLayout";
+import LogExerciseForm from '@/components/LogExerciseForm';
 import ExerciseHistoryDisplay from "@/components/ExerciseHistoryDisplay";
 import ExerciseProgressDisplay from "@/components/ExerciseProgressDisplay";
-import LogExerciseForm from '@/components/LogExerciseForm';
 import { fetchExerciseData, logExercise } from "@/utils/firebase";
-import AppLayout from "@/components/AppLayout";
-import { Skeleton } from "primereact/skeleton";
-import Link from "next/link";
+import { useRouter } from 'next/router';
+import { useUser } from "@/components/UserProvider";
+import styles from "@/styles/Home.module.css";
 
 export default function ExercisePage() {
     const router = useRouter();
@@ -15,6 +16,7 @@ export default function ExercisePage() {
     const [loading, setLoading] = useState(true);
     const [exerciseHistory, setExerciseHistory] = useState([]);
     const [loggedSuccessfully, setLoggedSuccessfully] = useState(false);
+    const { units } = useUser();
 
     useEffect(() => {
         const subscribeToData = async () => {
@@ -51,6 +53,7 @@ export default function ExercisePage() {
                         hideExerciseName
                         initialSets={exerciseHistory[0].sets}
                         onLog={onLog}
+                        units={units}
                     />
                 </div>
             </div>
@@ -69,17 +72,17 @@ export default function ExercisePage() {
         return (
             <main className={styles.main}>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                    <Skeleton width="300px"  height="32px"></Skeleton>
+                    <Skeleton width="300px" height="32px"></Skeleton>
                     <Skeleton width="100%" height="300px"></Skeleton>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                    <Skeleton width="200px"  height="24px"></Skeleton>
+                    <Skeleton width="200px" height="24px"></Skeleton>
                     <Skeleton width="100%" height="100px"></Skeleton>
                     <Skeleton width="100%" height="100px"></Skeleton>
                     <Skeleton width="100%" height="100px"></Skeleton>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                    <Skeleton width="200px"  height="24px"></Skeleton>
+                    <Skeleton width="200px" height="24px"></Skeleton>
                     <Skeleton width="100%" height="200px"></Skeleton>
                     <Skeleton width="100%" height="200px"></Skeleton>
                 </div>
@@ -92,17 +95,17 @@ export default function ExercisePage() {
             <main className={styles.main} >
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                     <h1>{exerciseName}</h1>
-                    { loggedSuccessfully ? renderLoggedSuccessfullyMessage() : renderLogExerciseForm() }
+                    {loggedSuccessfully ? renderLoggedSuccessfullyMessage() : renderLogExerciseForm()}
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                     <h2>History</h2>
-                    <ExerciseHistoryDisplay history={exerciseHistory} />
+                    <ExerciseHistoryDisplay history={exerciseHistory} units={units}/>
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                     <h2>Progress</h2>
-                    <ExerciseProgressDisplay history={exerciseHistory} />
+                    <ExerciseProgressDisplay history={exerciseHistory} units={units} />
                 </div>
             </main>
         );
@@ -123,7 +126,7 @@ export default function ExercisePage() {
     }
 
     return (
-        <AppLayout userId={userId}>
+        <AppLayout>
             <div className={styles.page}>
                 {loading && renderLoadingSkeleton()}
                 {!loading && exerciseHistory?.length > 0 && renderAppContent()}

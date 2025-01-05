@@ -54,7 +54,8 @@
 
 /* Hover effects for dark mode */
 [data-theme="dark"] .createNewExercise:hover {
-  color: rgba(255, 255, 255); 
+  /* color: rgba(255, 255, 255);  */
+  color: yellowgreen;
   background-color: rgba(17, 116, 192, 0.3); 
 }
 
@@ -73,6 +74,12 @@
 .exerciseLink:hover {
   text-decoration: underline wavy;
   font-weight: bold;
+}
+
+[data-theme="dark"] .exerciseLink:hover {
+  text-decoration: underline wavy;
+  font-weight: bold;
+  color: yellowgreen;
 }
 
 .warmUpToggle, .warmUpToggle:focus  {
@@ -155,7 +162,7 @@
 }
 
 .logExerciseButton {
-  border: solid 2px black;
+  border: solid 1px black;
   background-color: #339989;
   color: black;
   font-weight: bold;
@@ -176,7 +183,7 @@
 }
 
 [data-theme="dark"] .logExerciseButton {
-  border: solid 2px white;
+  border: solid 1px white;
   background-color: #225049;
   color: white;
 }
@@ -189,7 +196,7 @@
 }
 
 .editExerciseButton {
-  border: solid 2px black;
+  border: solid 1px black;
   background-color: #6B7FD7; 
   color: black;
   font-weight: bold;
@@ -210,7 +217,7 @@
 }
 
 [data-theme="dark"] .editExerciseButton {
-  border: solid 2px white;
+  border: solid 1px white;
   background-color: #5E6FBA; 
   color: white;
 }
@@ -222,25 +229,25 @@
 }
 
 .deleteExerciseButton {
-  border: solid 2px black;
+  border: solid 1px black;
   background-color: #E63946;
   color: white;
   font-weight: bold;
 }
 
 .deleteExerciseButton:hover {
-  border: 2px solid #E84855 !important;
+  border: 2px solid black !important;
   background-color: #FF1B1C;
 }
 
 [data-theme="dark"] .deleteExerciseButton {
-  border: solid 2px white;
+  border: solid 1px white;
   background-color: #C7333F;
   color: white;
 }
 
 [data-theme="dark"] .deleteExerciseButton:hover {
-  border: 2px solid #C8404B !important;
+  border: 2px solid white !important;
   background-color: #DC1A1B;
 }
 
@@ -360,4 +367,9 @@
   height: 18px;
   width: 18px;
   box-shadow: none;
+}
+
+.paginator {
+  height: 50px;
+  border-radius: 0;
 }

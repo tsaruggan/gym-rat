@@ -3,7 +3,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { Chart } from 'primereact/chart';
 import 'chartjs-adapter-date-fns';
 import regression from 'regression';
-import { PrimeIcons } from 'primereact/api';
+import { lbToKg } from "@/utils/conversions";
 
 // change default font
 import { Chart as ChartJS, Legend } from 'chart.js';
@@ -17,8 +17,7 @@ const timeRangeOptions = [
     { label: '6 months', value: 180 }
 ];
 
-
-export default function ExerciseProgressDisplay({ history }) {
+export default function ExerciseProgressDisplay({ history, units='lb' }) {
     const [data, setData] = useState([]);
     const [volumeLoadChartData, setVolumeLoadChartData] = useState({});
     const [averageWeightChartData, setAverageWeightChartData] = useState({});
@@ -42,12 +41,22 @@ export default function ExerciseProgressDisplay({ history }) {
             for (let i = history.length - 1; i >= 0; i--) {
                 const exercise = history[i];
                 const date = new Date(exercise.date);
-                const workingSets = exercise.sets.filter((set) => !set.warmUp);
-                const volumeLoad = workingSets.reduce((acc, set) => acc + set.weight * set.reps, 0);
+                
+                const workingSetsLb = exercise.sets.filter((set) => !set.warmUp);
+                const workingSets = workingSetsLb.map((set) => {
+                    if (units === "kg") {
+                        return { ...set, weight: lbToKg(set.weight) };
+                    }
+                    return set;
+                });
+
+                let volumeLoad = workingSets.reduce((acc, set) => acc + set.weight * set.reps, 0);
+                volumeLoad = Math.round(volumeLoad);
                 // const averageWeight = workingSets.reduce((acc, set) => acc + set.weight, 0) / workingSets.length;
                 const totalReps = workingSets.reduce((acc, set) => acc + set.reps, 0);
                 let averageWeight = workingSets.reduce((acc, set) => acc + set.weight * set.reps, 0) / totalReps; // weighted average
-                averageWeight = Math.round(averageWeight * 2) / 2; // Round to nearest 0.5
+                // averageWeight = Math.round(averageWeight * 2) / 2; // Round to nearest 0.5
+                averageWeight = Math.round(averageWeight * 10) / 10;
 
                 // color points based on improvement or decline
                 let volumeLoadColor = gray;
@@ -178,7 +187,7 @@ export default function ExerciseProgressDisplay({ history }) {
                 grid: { color: gridColor },
             },
             y: {
-                title: { display: false, text: 'Volume Load (lb)' },
+                title: { display: false, text: `Volume Load (${units})` },
                 grid: { color: gridColor },
                 display: true,
                 ticks: { 
@@ -204,7 +213,7 @@ export default function ExerciseProgressDisplay({ history }) {
             },
             title: { 
                 display: true,  
-                text: 'Volume Load (lb)', 
+                text: `Volume Load (${units})`, 
                 padding: { top: 8, bottom: 8 },
                 color: color1,
                 font: { size: '14px' }       
@@ -222,7 +231,7 @@ export default function ExerciseProgressDisplay({ history }) {
                 grid: { color: gridColor },
             },
             y: {
-                title: { display: false, text: 'Average Weight (lb)' },
+                title: { display: false, text: `Average Weight (${units})` },
                 grid: { color: gridColor },
                 display: true,
                 ticks: { 
@@ -248,7 +257,7 @@ export default function ExerciseProgressDisplay({ history }) {
             },
             title: { 
                 display: true,  
-                text: 'Average Weight (lb)',
+                text: `Average Weight (${units})`,
                 padding: { top: 8, bottom: 8 },
                 color: color2,
                 font: { size: '14px' }       
@@ -286,7 +295,11 @@ export default function ExerciseProgressDisplay({ history }) {
         if (tooltipItem && tooltipItem.raw && tooltipItem.raw.exercise) {
             const sets = tooltipItem.raw.exercise.sets;
             const formattedSets = sets.map((set) => {
-                let str = `${set.reps} × ${set.weight} lb`;
+                let weight = set.weight;
+                if (units == "kg") {
+                    weight = lbToKg(weight);
+                }
+                let str = `${set.reps} × ${weight} ${units}`;
                 if (set.warmUp) {
                     return str + ' ✱';
                 }
@@ -298,7 +311,7 @@ export default function ExerciseProgressDisplay({ history }) {
 
     const renderToolTipFooter = (tooltipItem, label) => {
         if (tooltipItem && tooltipItem[0] && tooltipItem[0].raw && tooltipItem[0].raw.y) {
-            return `${label}: ${tooltipItem[0].raw.y} lb`;
+            return `${label}: ${tooltipItem[0].raw.y} ${units}`;
         }
     }
 

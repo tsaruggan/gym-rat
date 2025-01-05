@@ -4,12 +4,20 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Dropdown } from 'primereact/dropdown';
 import { Button } from 'primereact/button';
 import styles from "@/styles/Home.module.css";
+import { lbToKg, kgToLb } from "@/utils/conversions";
 
-const defaultSets = [{ weight: 55, reps: 8, warmUp: false }, { weight: 55, reps: 8, warmUp: false }, { weight: 55, reps: 8, warmUp: false }];
-
-const initializeSets = (initialSets = defaultSets) => {
-    return initialSets.map(set => ({ ...set, key: generateUniqueKey() }));
-};
+const initializeSets = (initialSets, units) => {
+    const defaultSets = [{ weight: 55, reps: 8, warmUp: false }, { weight: 55, reps: 8, warmUp: false }, { weight: 55, reps: 8, warmUp: false }];
+    const setsLb = initialSets ? initialSets : defaultSets;
+    const sets = setsLb.map((set) => {
+        if (units === "kg") {
+            return { ...set, weight: lbToKg(set.weight) };
+        }
+        return set;
+    });
+      
+    return sets.map(set => ({ ...set, key: generateUniqueKey() }));
+}
 
 const generateUniqueKey = () => Math.random().toString();
 
@@ -22,16 +30,17 @@ const initializeDate = (initialDate) => {
 
 export default function LogExerciseForm({
     initialExerciseName = '',
-    initialSets = defaultSets,
+    initialSets,
     initialDate,
     hideExerciseName = false,
     edit = false,
     onLog,
     onEdit,
-    onDelete
+    onDelete,
+    units="lb"
 }) {
     const [exerciseName, setExerciseName] = useState(initialExerciseName);
-    const [sets, setSets] = useState(initializeSets(initialSets));
+    const [sets, setSets] = useState(initializeSets(initialSets, units));
     const [date, setDate] = useState(initializeDate(initialDate));
 
     const renderSet = (index) => {
@@ -54,7 +63,7 @@ export default function LogExerciseForm({
                             minFractionDigits={0}
                             maxFractionDigits={1}
                             inputStyle={{ width: '96px', padding: '4px', borderRadius: '0' }}
-                            suffix=" lb"
+                            suffix={` ${units}`}
                         />
                         <Dropdown
                             value={reps}
@@ -130,10 +139,16 @@ export default function LogExerciseForm({
         if (validateForm()) {
             const formattedDate = new Date(date).toISOString();
             const formattedSets = sets.map(({ key, ...rest }) => rest);
+            const formattedSetsLb = formattedSets.map((set) => {
+                if (units === "kg") {
+                    return { ...set, weight: kgToLb(set.weight) };
+                }
+                return set;
+            });
             onLog({
                 "name": exerciseName,
                 "date": formattedDate,
-                "sets": formattedSets
+                "sets": formattedSetsLb
             });
         }
     };
@@ -142,10 +157,16 @@ export default function LogExerciseForm({
         if (validateForm()) {
             const formattedDate = new Date(date).toISOString();
             const formattedSets = sets.map(({ key, ...rest }) => rest);
+            const formattedSetsLb = formattedSets.map((set) => {
+                if (units === "kg") {
+                    return { ...set, weight: kgToLb(set.weight) };
+                }
+                return set;
+            });
             onEdit({
                 "name": exerciseName,
                 "date": formattedDate,
-                "sets": formattedSets
+                "sets": formattedSetsLb
             });
         }
     };

@@ -89,3 +89,18 @@ export async function checkUserExists(userId) {
     return exists;
 }
 
+// Get user by id
+export async function fetchUser(userId) {
+    try {
+        const docRef = doc(db, "Users", userId);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            return docSnap.data();
+        } else {
+            return null;
+        }
+    } catch (error) {
+        throw new Error("Error:" + error.message);
+    }
+}
