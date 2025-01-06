@@ -51,7 +51,7 @@ function ExercisesDisplay({ data, units='lb' }) {
             });
             setExerciseData(exercisesArray);
         }
-    }, [data]);
+    }, [data, units]);
 
     const formatWeightRange = (workingSets) => {
         let minWeight = Infinity;

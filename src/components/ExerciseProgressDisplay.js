@@ -88,7 +88,7 @@ export default function ExerciseProgressDisplay({ history, units='lb' }) {
             }
             setData(data);
         }
-    }, [history]);
+    }, [history, units]);
 
     useEffect(() => {
         if (data && data.length > 0 && timeRange) {

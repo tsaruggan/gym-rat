@@ -43,6 +43,10 @@ export default function LogExerciseForm({
     const [sets, setSets] = useState(initializeSets(initialSets, units));
     const [date, setDate] = useState(initializeDate(initialDate));
 
+    useEffect(() => {
+        setSets(initializeSets(initialSets, units));
+    }, [initialSets, units]);
+
     const renderSet = (index) => {
         const set = sets[index];
         const weight = set.weight;
@@ -62,6 +66,7 @@ export default function LogExerciseForm({
                             mode="decimal"
                             minFractionDigits={0}
                             maxFractionDigits={1}
+                            useGrouping={false}
                             inputStyle={{ width: '96px', padding: '4px', borderRadius: '0' }}
                             suffix={` ${units}`}
                         />
@@ -135,7 +140,7 @@ export default function LogExerciseForm({
         return true;
     };
 
-    const logExercise = () => {
+    const submit = (callback) => {
         if (validateForm()) {
             const formattedDate = new Date(date).toISOString();
             const formattedSets = sets.map(({ key, ...rest }) => rest);
@@ -145,30 +150,20 @@ export default function LogExerciseForm({
                 }
                 return set;
             });
-            onLog({
+            callback({
                 "name": exerciseName,
                 "date": formattedDate,
                 "sets": formattedSetsLb
             });
         }
+    }
+
+    const logExercise = () => {
+        submit(onLog);
     };
 
     const editExercise = () => {
-        if (validateForm()) {
-            const formattedDate = new Date(date).toISOString();
-            const formattedSets = sets.map(({ key, ...rest }) => rest);
-            const formattedSetsLb = formattedSets.map((set) => {
-                if (units === "kg") {
-                    return { ...set, weight: kgToLb(set.weight) };
-                }
-                return set;
-            });
-            onEdit({
-                "name": exerciseName,
-                "date": formattedDate,
-                "sets": formattedSetsLb
-            });
-        }
+        submit(onEdit);
     };
 
     const deleteExercise = () => {
