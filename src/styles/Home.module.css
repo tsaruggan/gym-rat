@@ -303,7 +303,7 @@
 .header {
   position: sticky;
   top: 0;
-  padding: 24px;
+  padding: 12px;
   text-align: center;
   width: 100%;
   z-index: 10;
@@ -330,10 +330,13 @@
 }
 
 .headerButton {
-  padding: 12px;
+  color: white;
   background-color: transparent;
   border: solid 1px transparent;
   border-radius: 8px !important;
+  display: inline;
+  padding: 12px;
+  box-shadow: none;
 }
 
 .headerButton:hover {
@@ -343,6 +346,16 @@
 [data-theme="dark"] .headerButton:hover {
   background-color: transparent;
   border: solid 1px yellowgreen;
+}
+
+.headerButton span {
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+[data-theme="dark"] .headerButton span {
+  color: white;
 }
 
 .createNewExerciseLink {
@@ -372,4 +385,46 @@
 .paginator {
   height: 50px;
   border-radius: 0;
+}
+
+.copyUserIdButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px; 
+  text-align: center; 
+  width: 100%; 
+  height: 96px;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(17, 116, 192, 0.05);
+  cursor: pointer;
+  border-style: dashed;
+  border-width: 4px;
+  border-radius: 24px !important;
+  font-size: large;
+}
+
+.copyUserIdButton i {
+  font-size: medium;
+}
+
+.copyUserIdButton:hover {
+  border-style: solid;
+  color: rgba(0, 0, 0);
+  background-color: rgba(17, 116, 192, 0.1);
+  font-weight: bold;
+}
+
+.copyUserIdButton:hover i {
+  transform: rotate(-10deg);
+}
+
+[data-theme="dark"] .copyUserIdButton {
+  color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(17, 116, 192, 0.2);
+}
+
+[data-theme="dark"] .copyUserIdButton:hover {
+  color: yellowgreen;
+  background-color: rgba(17, 116, 192, 0.3); 
 }

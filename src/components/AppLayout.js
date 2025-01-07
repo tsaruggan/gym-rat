@@ -1,5 +1,7 @@
-import Link from 'next/link';
+import { Button } from 'primereact/button';
+import SettingsPopup from './SettingsPopup';
 import { useUser } from './UserProvider';
+import { useRouter } from 'next/router';
 import styles from '@/styles/Home.module.css';
 
 export default function AppLayout({ children }) {
@@ -21,16 +23,17 @@ export default function AppLayout({ children }) {
 
 };
 
-function Header({ userId, toggleDarkMode }) {
+function Header({ userId }) {
+  const router = useRouter();
+
   return (
     <header className={styles.header}>
       <div className={styles.headerContent}>
-        <Link href={`/${userId}`}>
-          <span className={styles.headerButton}>🐭 Gym Rat</span>
-        </Link>
-        <Link href={`#`}>
-          <span className={styles.headerButton} onClick={toggleDarkMode}>🧀</span>
-        </Link>
+
+        <Button className={styles.headerButton} onClick={() => { router.push(`/${userId}`) }}>
+          <span>🐭 Gym Rat</span>
+        </Button>
+        <SettingsPopup />
       </div>
     </header>
   );

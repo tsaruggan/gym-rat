@@ -16,7 +16,7 @@ export default function ExercisePage() {
     const [loading, setLoading] = useState(true);
     const [exerciseHistory, setExerciseHistory] = useState([]);
     const [loggedSuccessfully, setLoggedSuccessfully] = useState(false);
-    const { units } = useUser();
+    const { units, darkMode } = useUser();
 
     useEffect(() => {
         const subscribeToData = async () => {
@@ -105,7 +105,7 @@ export default function ExercisePage() {
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                     <h2>Progress</h2>
-                    <ExerciseProgressDisplay history={exerciseHistory} units={units} />
+                    <ExerciseProgressDisplay history={exerciseHistory} units={units} darkMode={darkMode} />
                 </div>
             </main>
         );

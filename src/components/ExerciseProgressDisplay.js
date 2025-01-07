@@ -17,7 +17,7 @@ const timeRangeOptions = [
     { label: '6 months', value: 180 }
 ];
 
-export default function ExerciseProgressDisplay({ history, units='lb' }) {
+export default function ExerciseProgressDisplay({ history, units='lb', darkMode }) {
     const [data, setData] = useState([]);
     const [volumeLoadChartData, setVolumeLoadChartData] = useState({});
     const [averageWeightChartData, setAverageWeightChartData] = useState({});
@@ -88,7 +88,7 @@ export default function ExerciseProgressDisplay({ history, units='lb' }) {
             }
             setData(data);
         }
-    }, [history, units]);
+    }, [history, units, darkMode]);
 
     useEffect(() => {
         if (data && data.length > 0 && timeRange) {

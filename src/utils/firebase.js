@@ -104,3 +104,15 @@ export async function fetchUser(userId) {
         throw new Error("Error:" + error.message);
     }
 }
+
+// Update user preferences (darkMode and units)
+export async function updateUserPreferences(userId, preferences) {
+    try {
+        const userRef = doc(db, "Users", userId);
+        await updateDoc(userRef, {
+            preferences: preferences
+        });
+    } catch (error) {
+        throw new Error("Error:" + error.message);
+    }
+}
