@@ -69,13 +69,19 @@ export default function LogExerciseForm({
                             useGrouping={false}
                             inputStyle={{ width: '96px', padding: '4px', borderRadius: '0' }}
                             suffix={` ${units}`}
+                            inputMode="decimal"
+                            pattern="[0-9]*[.,]?[0-9]+"
                         />
                         <Dropdown
                             value={reps}
                             options={[...Array(24).keys()].map(i => i + 1)}
                             onChange={(e) => updateSet(index, 'reps', e.value)}
                             style={{ width: '96px', padding: '4px', borderRadius: '0' }}
-                            panelStyle={{ padding: '4px' }}
+                            itemTemplate={(option) => (
+                                <div style={{ padding: '4px'}}>
+                                    {option}
+                                </div>
+                            )}
                         />
                         <Button
                             onClick={() => updateSet(index, 'warmUp', !sets[index].warmUp)}

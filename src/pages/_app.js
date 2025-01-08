@@ -18,7 +18,6 @@ export default function App({ Component, pageProps }) {
         <title>Gym Rat</title>
         <meta name="description" content="weightlifting tracker" />
         <meta name="theme-color" content="#ffffff" />
-        <link rel="manifest" href="/manifest.json" />
       </Head>
       <PrimeReactProvider>
         {isAppPage ? (

@@ -339,6 +339,11 @@ export default function ExerciseProgressDisplay({ history, units='lb', darkMode 
                     options={timeRangeOptions} 
                     onChange={(e) => setTimeRange(e.value)} 
                     style={{ padding: '4px', width: 'auto', borderRadius: '0' }} 
+                    itemTemplate={(option) => (
+                        <div style={{ padding: '4px'}}>
+                            {option.label}
+                        </div>
+                    )}
                 />
             </div>
             

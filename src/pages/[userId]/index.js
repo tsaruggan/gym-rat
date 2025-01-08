@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Head from "next/head";
 import Link from "next/link";
 import { Skeleton } from 'primereact/skeleton';
 import AppLayout from "@/components/AppLayout";
@@ -52,14 +51,17 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.homePageSection}>
           <h2>Exercises</h2>
-          <Link href={`/${userId}/exercise`} >
-            <div className={styles.createNewExercise}>Create & log a new exercise...</div>
-          </Link>
-          <ExercisesDisplay data={data} units={units}/>
+          <button
+            className={styles.createNewExercise}
+            onClick={() => router.push(`/${userId}/exercise`)}
+          >
+            Create & log a new exercise...
+          </button>
+          <ExercisesDisplay data={data} units={units} />
         </div>
         <div className={styles.homePageSection}>
           <h2>Workouts</h2>
-          <WorkoutsDisplay data={data} units={units}/>
+          <WorkoutsDisplay data={data} units={units} />
         </div>
       </main>
     );
@@ -67,10 +69,6 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>Gym Rat</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
       <AppLayout>
         <div className={styles.page}>
           {loading ? renderLoadingSkeleton() : renderAppContent()}

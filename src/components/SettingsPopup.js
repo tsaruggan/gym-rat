@@ -37,10 +37,10 @@ export default function SettingsPopup(props) {
         const port = window.location.port ? `:${window.location.port}` : '';
         const text = `${domain}${port}/${user.id}`;
         return (
-            <div className={styles.copyUserIdButton} onClick={() => handleCopy(text)}>
+            <button className={styles.copyUserIdButton} onClick={() => handleCopy(text)}>
                 {text}
                 <i className="pi pi-copy" style={{ marginLeft: '8px' }}></i>
-            </div>
+            </button>
         );
     }
 
@@ -72,7 +72,11 @@ export default function SettingsPopup(props) {
                     options={options}
                     onChange={(e) => e.value !== value && onChange(e)}
                     style={{ width: '100px', padding: '4px', borderRadius: '0' }}
-                    panelStyle={{ padding: '4px' }}
+                    itemTemplate={(option) => (
+                        <div style={{ padding: '4px'}}>
+                            {option.label}
+                        </div>
+                    )}
                 />
             </div>
         )

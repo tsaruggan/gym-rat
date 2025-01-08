@@ -38,11 +38,13 @@
   border-style: dashed;
   border-width: 2px;
   border-radius: 8px !important;
+  font-size: 16px;
 }
 
 .createNewExercise:hover {
   border-style: solid;
   color: rgba(0, 0, 0);
+  border-color: black;
   background-color: rgba(17, 116, 192, 0.1);
   font-weight: bold;
 }
@@ -56,6 +58,7 @@
 [data-theme="dark"] .createNewExercise:hover {
   /* color: rgba(255, 255, 255);  */
   color: yellowgreen;
+  border-color: yellowgreen;
   background-color: rgba(17, 116, 192, 0.3); 
 }
 
@@ -411,6 +414,7 @@
 .copyUserIdButton:hover {
   border-style: solid;
   color: rgba(0, 0, 0);
+  border-color: black;
   background-color: rgba(17, 116, 192, 0.1);
   font-weight: bold;
 }
@@ -426,5 +430,6 @@
 
 [data-theme="dark"] .copyUserIdButton:hover {
   color: yellowgreen;
+  border-color: yellowgreen;
   background-color: rgba(17, 116, 192, 0.3); 
 }
