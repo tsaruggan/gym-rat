@@ -6,7 +6,7 @@ import ExerciseRecordTable from "./ExerciseRecordTable";
 import EditExercisePopup from "./EditExercisePopup";
 import styles from "@/styles/Home.module.css";
 
-export default function WorkoutsDisplay({ data, units='lb' }) {
+export default function WorkoutsDisplay({ data, units='lb', darkMode }) {
     const [workoutData, setWorkoutData] = useState([]);
 
     useEffect(() => {
@@ -32,7 +32,7 @@ export default function WorkoutsDisplay({ data, units='lb' }) {
             workoutsArray.sort((a, b) => new Date(b.date) - new Date(a.date));
             setWorkoutData(workoutsArray);
         }
-    }, [data]);
+    }, [data, darkMode]);
     
     // paginator stuff
     const [currentPage, setCurrentPage] = useState(0);

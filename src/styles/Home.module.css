@@ -3,25 +3,41 @@
   flex-direction: column;
   align-items: center;
   justify-items: center;
-  /* min-height: 100svh; */
   padding: 12px;
   gap: 64px;
   max-width: 800px;
   margin: 0 auto;
+  
 }
 
 .main {
   display: flex;
   flex-direction: column;
-  grid-row-start: 2;
   width: 100%;
   gap: 36px;
 }
 
-@media (min-width: 800px) {
-  .page {
-    /* margin-top: 48px; */
-  }
+.parent {
+  height: 100svh;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  padding: 12px;
+  text-align: center;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.8); 
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-around;
+  z-index: 10;
+}
+
+[data-theme="dark"] .header {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .createNewExercise {
@@ -298,29 +314,6 @@
 [data-theme="dark"] .dateTimePickerInput:hover {
   border: solid 2px white;
   background-color: #222838;
-}
-
-.parent {
-  height: 100vh;
-  overflow: auto;
-}
-
-.header {
-  position: sticky;
-  top: 0;
-  padding: 12px;
-  text-align: center;
-  width: 100%;
-  z-index: 10;
-  background-color: rgba(255, 255, 255, 0.7); 
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid #e5e7eb;
-  display: flex;
-  justify-content: space-around;
-}
-
-[data-theme="dark"] .header {
-  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .headerContent {

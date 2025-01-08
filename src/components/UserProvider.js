@@ -38,9 +38,16 @@ export default function UserProvider({ children, userId }) {
     }
 
     const updateBrowserTheme = (darkMode) => {
-        const theme = darkMode ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', theme);
-    }
+        document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+    
+        let metaTag = document.querySelector('meta[name="theme-color"]');
+        if (!metaTag) {
+            metaTag = document.createElement('meta');
+            metaTag.name = 'theme-color';
+            document.head.appendChild(metaTag);
+        }
+        metaTag.setAttribute('content', darkMode ? '#000000' : '#ffffff');
+    };    
 
     useEffect(() => {
         // Check if the user exists and get user object

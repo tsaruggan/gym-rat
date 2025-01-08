@@ -27,12 +27,12 @@ html, body {
   max-width: 100vw;
   overflow-x: hidden;
   font-family: 'Geist Mono', sans-serif;
+  background-color: var(--background-color);
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--background-color);
   color: var(--text-color);
   transition: background-color 0.5s ease !important;
 }

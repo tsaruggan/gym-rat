@@ -14,7 +14,7 @@ export default function Home() {
   const { userId } = router.query;
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  const { units } = useUser();
+  const { darkMode, units } = useUser();
 
   useEffect(() => {
     const subscribeToData = async () => {
@@ -61,7 +61,7 @@ export default function Home() {
         </div>
         <div className={styles.homePageSection}>
           <h2>Workouts</h2>
-          <WorkoutsDisplay data={data} units={units} />
+          <WorkoutsDisplay data={data} units={units} darkMode={darkMode}/>
         </div>
       </main>
     );
