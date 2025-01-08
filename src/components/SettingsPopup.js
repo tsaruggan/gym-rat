@@ -106,7 +106,7 @@ export default function SettingsPopup(props) {
                 visible={visible}
                 onHide={() => { if (!visible) return; setVisible(false); }}
                 style={{ width: "100%", maxWidth: "400px", overflow: 'hidden' }}
-                headerStyle={{ height: '48px', padding: '8px' }}
+                headerStyle={{ height: '48px', padding: '12px' }}
             >
                 <div style={{ width: "100%", padding: "24px", display: 'flex', flexDirection: 'column', gap: '24px' }} >
                     {renderCopyUserIdButton()}

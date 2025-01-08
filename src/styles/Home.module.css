@@ -38,6 +38,7 @@
   border-style: dashed;
   border-width: 2px;
   border-radius: 8px !important;
+  border-color: black;
   font-size: 16px;
 }
 
@@ -51,6 +52,7 @@
 
 [data-theme="dark"] .createNewExercise {
   color: rgba(255, 255, 255, 0.6);
+  border-color: white;
   background-color: rgba(17, 116, 192, 0.2);
 }
 
@@ -402,8 +404,9 @@
   background-color: rgba(17, 116, 192, 0.05);
   cursor: pointer;
   border-style: dashed;
-  border-width: 4px;
-  border-radius: 24px !important;
+  border-width: 2px;
+  border-radius: 8px !important;
+  border-color: black;
   font-size: large;
 }
 
@@ -426,6 +429,7 @@
 [data-theme="dark"] .copyUserIdButton {
   color: rgba(255, 255, 255, 0.6);
   background-color: rgba(17, 116, 192, 0.2);
+  border-color: white;
 }
 
 [data-theme="dark"] .copyUserIdButton:hover {
