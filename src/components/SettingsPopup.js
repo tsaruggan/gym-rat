@@ -23,9 +23,12 @@ export default function SettingsPopup(props) {
     const renderCopyUserIdButton = () => {
         const domain = window.location.hostname;
         const port = window.location.port ? `:${window.location.port}` : '';
+        const protocol = 'https://';
+    
+        const url = `${protocol}${domain}${port}/${user.id}`;
         const text = `${domain}${port}/${user.id}`;
         return (
-            <button className={styles.copyUserIdButton} onClick={() => handleCopy(text)}>
+            <button className={styles.copyUserIdButton} onClick={() => handleCopy(url)}>
                 {userIdCopied ? (
                     <span> Copied! </span>
                 ) : (
@@ -36,7 +39,7 @@ export default function SettingsPopup(props) {
                 )}
             </button>
         );
-    }
+    }    
 
     const renderUserPreferencesSettings = () => {
         const darkModeOptions = [
