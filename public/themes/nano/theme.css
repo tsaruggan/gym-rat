@@ -4865,8 +4865,11 @@
     font-size: 1.25rem;
   }
   .p-dialog .p-dialog-header .p-dialog-header-icon {
-    width: 1rem;
-    height: 1rem;
+    /* width: 1rem;
+    height: 1rem; */
+    /* EDIT */
+    width: 2rem;
+    height: 2rem;
     color: #878d96;
     border: 0 none;
     background: transparent;

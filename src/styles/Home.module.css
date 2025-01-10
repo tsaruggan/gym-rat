@@ -17,7 +17,7 @@
 }
 
 .parent {
-  height: 100vh;
+  height: 100svh;
   overflow: auto;
   padding-bottom: 48px;
 }

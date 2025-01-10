@@ -71,6 +71,7 @@ export default function LogExerciseForm({
                             suffix={` ${units}`}
                             inputMode="decimal"
                             pattern="[0-9]*[.,]?[0-9]+"
+                            spellCheck={false}
                         />
                         <Dropdown
                             value={reps}
@@ -89,7 +90,7 @@ export default function LogExerciseForm({
                             style={{ 
                                 border: warmUp ? "solid 2px rgba(0, 200, 255, 1)" : "dashed 1px rgba(0, 133, 170, 0.66)", 
                                 color: "rgba(0, 200, 255, 1)",
-                                background: warmUp ? "linear-gradient(to bottom, rgba(0, 200, 255, 0.2), rgba(249, 105, 0, 0.2))" : "transparent",
+                                background: warmUp ? "linear-gradient(to bottom, rgba(0, 200, 255, 0.3), transparent)" : "transparent",
                             }}
                         >
                             <span style={{ opacity: warmUp ? 1 : 0.7, filter: warmUp ? 'none' : 'grayscale(100%)' }}>✱</span>
@@ -212,6 +213,7 @@ export default function LogExerciseForm({
                         value={exerciseName}
                         onChange={(e) => setExerciseName(e.target.value)}
                         style={{ padding: '4px' }}
+                        spellCheck={false}
                     />
                 </div>
 
