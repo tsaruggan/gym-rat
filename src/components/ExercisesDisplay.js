@@ -35,13 +35,13 @@ function ExercisesDisplay({ data, units='lb' }) {
             // process exercise entries for table display
             const exercisesArray = [];
             exercises.forEach((item, _) => {
-                const workingSets = item.sets.filter(set => set.warmUp === false);
+                const workingSets = item.sets.filter(set => set.ignore === false);
 
                 const exercise = {};
                 exercise.userId = item.userId;
                 exercise.name = item.name;
                 exercise.workingSets = workingSets.length;
-                exercise.warmUpSets = item.sets.length - workingSets.length;
+                exercise.ignoreSets = item.sets.length - workingSets.length;
                 exercise.reps = calculateAverageWorkingReps(workingSets);
                 exercise.date = formatDate(item.date);
                 exercise.entries = freq.get(item.name);
@@ -109,9 +109,8 @@ function ExercisesDisplay({ data, units='lb' }) {
     }
 
     const renderSets = (rowData) => {
-        if (rowData.warmUpSets > 0) {
-            // return <span>{rowData.workingSets}<sup>+{rowData.warmUpSets}</sup></span>;
-            return <span>{rowData.workingSets}+{rowData.warmUpSets}<sup>✱</sup></span>;
+        if (rowData.ignoreSets > 0) {
+            return <span>{rowData.workingSets}+{rowData.ignoreSets}<sup>✱</sup></span>;
         } else {
             return <span>{rowData.workingSets}</span>
         }

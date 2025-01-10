@@ -42,7 +42,7 @@ export default function ExerciseProgressDisplay({ history, units='lb', darkMode 
                 const exercise = history[i];
                 const date = new Date(exercise.date);
                 
-                const workingSetsLb = exercise.sets.filter((set) => !set.warmUp);
+                const workingSetsLb = exercise.sets.filter((set) => !set.ignore);
                 const workingSets = workingSetsLb.map((set) => {
                     if (units === "kg") {
                         return { ...set, weight: lbToKg(set.weight) };
@@ -302,7 +302,7 @@ export default function ExerciseProgressDisplay({ history, units='lb', darkMode 
                     weight = lbToKg(weight);
                 }
                 let str = `${set.reps} × ${weight} ${units}`;
-                if (set.warmUp) {
+                if (set.ignore) {
                     return str + ' ✱';
                 }
                 return str;

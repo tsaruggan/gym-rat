@@ -7,7 +7,7 @@ import styles from "@/styles/Home.module.css";
 import { lbToKg, kgToLb } from "@/utils/conversions";
 
 const initializeSets = (initialSets, units) => {
-    const defaultSets = [{ weight: 55, reps: 8, warmUp: false }, { weight: 55, reps: 8, warmUp: false }, { weight: 55, reps: 8, warmUp: false }];
+    const defaultSets = [{ weight: 55, reps: 8, ignore: false }, { weight: 55, reps: 8, ignore: false }, { weight: 55, reps: 8, ignore: false }];
     const setsLb = initialSets ? initialSets : defaultSets;
     const sets = setsLb.map((set) => {
         if (units === "kg") {
@@ -51,7 +51,7 @@ export default function LogExerciseForm({
         const set = sets[index];
         const weight = set.weight;
         const reps = set.reps;
-        const warmUp = set.warmUp;
+        const ignore = set.ignore;
         const key = set.key;
 
         return (
@@ -85,15 +85,15 @@ export default function LogExerciseForm({
                             )}
                         />
                         <Button
-                            onClick={() => updateSet(index, 'warmUp', !sets[index].warmUp)}
-                            className={styles.warmUpToggle}
+                            onClick={() => updateSet(index, 'ignore', !sets[index].ignore)}
+                            className={styles.ignoreToggle}
                             style={{ 
-                                border: warmUp ? "solid 2px rgba(0, 200, 255, 1)" : "dashed 1px rgba(0, 133, 170, 0.66)", 
+                                border: ignore ? "solid 2px rgba(0, 200, 255, 1)" : "dashed 1px rgba(0, 133, 170, 0.66)", 
                                 color: "rgba(0, 200, 255, 1)",
-                                background: warmUp ? "linear-gradient(to bottom, rgba(0, 200, 255, 0.3), transparent)" : "transparent",
+                                background: ignore ? "linear-gradient(to bottom, rgba(0, 200, 255, 0.3), transparent)" : "transparent",
                             }}
                         >
-                            <span style={{ opacity: warmUp ? 1 : 0.7, filter: warmUp ? 'none' : 'grayscale(100%)' }}>✱</span>
+                            <span style={{ opacity: ignore ? 1 : 0.7, filter: ignore ? 'none' : 'grayscale(100%)' }}>✱</span>
                         </Button>
                     </div>
                     <Button
@@ -134,7 +134,7 @@ export default function LogExerciseForm({
             return false;
         }
 
-        const hasWorkingSet = sets.some(set => !set.warmUp);
+        const hasWorkingSet = sets.some(set => !set.ignore);
         if (!hasWorkingSet) {
             return false;
         }
