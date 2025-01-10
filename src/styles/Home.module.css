@@ -120,7 +120,7 @@
 }
 
 .warmUpToggle:hover {
-  border: 2px solid rgba(0, 200, 255, 0.85) !important;
+  border: 2px solid rgba(0, 200, 255, 0.8) !important;
   background-color: rgba(0, 200, 255, 0.1) !important;
 }
 
