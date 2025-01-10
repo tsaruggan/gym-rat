@@ -104,7 +104,7 @@
   color: yellowgreen;
 }
 
-.warmUpToggle, .warmUpToggle:focus  {
+.warmUpToggle, .warmUpToggle:focus {
   background: none;
   cursor: pointer;
   padding: 0; 
@@ -119,10 +119,10 @@
   border-radius: 1000px !important;
 }
 
-.warmUpToggle:hover {
+/* .warmUpToggle:hover {
   border: 2px solid rgba(0, 200, 255, 0.8) !important;
   background-color: rgba(0, 200, 255, 0.05) !important;
-}
+} */
 
 .trashButton {
   background-color: transparent;
