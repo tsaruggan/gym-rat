@@ -24,6 +24,7 @@ export default function NewExercisePage() {
             <div className={styles.page}>
                 <main className={styles.main} style={{ maxWidth: '400px', padding: '12px' }}>
                     <LogExerciseForm onLog={onLog} units={units}/>
+                    <p style={{ fontSize: "11px" }}>Note: Sets marked with "✱" are tracked but do not count towards your stats.</p>
                 </main>
             </div>
         </AppLayout>
