@@ -90,7 +90,7 @@ export default function LogExerciseForm({
                             style={{ 
                                 border: warmUp ? "solid 2px rgba(0, 200, 255, 1)" : "dashed 1px rgba(0, 133, 170, 0.66)", 
                                 color: "rgba(0, 200, 255, 1)",
-                                background: warmUp ? "linear-gradient(to bottom, rgba(0, 200, 255, 0.4), rgba(0, 200, 255, 0.2))" : "transparent",
+                                background: warmUp ? "linear-gradient(to bottom, rgba(0, 200, 255, 0.4), rgba(0, 200, 255, 0.1))" : "transparent",
                             }}
                         >
                             <span style={{ opacity: warmUp ? 1 : 0.7, filter: warmUp ? 'none' : 'grayscale(100%)' }}>✱</span>
