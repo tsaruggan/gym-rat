@@ -19,7 +19,7 @@ export default function Home() {
         return (
             <div className={styles.getStartedContainer}>
                 <p>
-                    <b>Gym Rat</b> is the no-frills weightlifting app for logging exercises and tracking <a className={styles.poLink} href="https://youtu.be/k0J8URJfUTg?si=CizbI75PyUbOs4BJ" target="_blank">progressive overload</a>. Visualize your performance trends and recall your workout history to focus on better results.
+                    <b>Gym Rat</b> is the no-frills weightlifting app for logging exercises and tracking <a className={styles.poLink} href="https://youtu.be/k0J8URJfUTg?si=CizbI75PyUbOs4BJ" target="_blank">progressive overload</a>. Visualize your performance trends and easily recall your workout history to focus on better results.
                 </p>
 
                 <ul style={{ paddingLeft: '24px' }} >
