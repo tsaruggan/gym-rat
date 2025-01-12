@@ -505,12 +505,13 @@
 .copyAppLinkButton {
   font-size: small;
   background: none;
-  border: solid 1px;
+  border: solid 1px black;
   padding: 2px;
   height: 24px;
   width: 24px;
   justify-content: space-around;
   background: transparent;
+  color: black;
 }
 
 .copyAppLinkButton:hover {
