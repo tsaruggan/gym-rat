@@ -9,7 +9,7 @@ import { fetchAllData } from "@/utils/firebase";
 import { useUser } from "@/components/UserProvider";
 import styles from "@/styles/Home.module.css";
 
-export default function Home() {
+export default function Main() {
   const router = useRouter();
   const { userId } = router.query;
   const [loading, setLoading] = useState(true);

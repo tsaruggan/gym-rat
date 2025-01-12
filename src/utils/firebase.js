@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, query, onSnapshot, addDoc, doc, getDoc, getDocs, where, updateDoc, deleteDoc } from "firebase/firestore";
+import { getFirestore, collection, query, onSnapshot, addDoc, doc, getDoc, setDoc, where, updateDoc, deleteDoc } from "firebase/firestore";
+import { customAlphabet } from 'nanoid';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -19,7 +20,7 @@ const db = getFirestore(app);
 export function fetchAllData(userId, callback) {
     const exercisesRef = collection(db, 'Exercises');
     const q = query(
-        exercisesRef, 
+        exercisesRef,
         where('userId', '==', userId),
     );
 
@@ -37,7 +38,7 @@ export function fetchAllData(userId, callback) {
 export function fetchExerciseData(userId, exerciseName, callback) {
     const exercisesRef = collection(db, 'Exercises');
     const q = query(
-        exercisesRef, 
+        exercisesRef,
         where('userId', '==', userId),
         where('name', '==', exerciseName)
     );
@@ -55,7 +56,7 @@ export function fetchExerciseData(userId, exerciseName, callback) {
 // Log an exercise in the database 
 export async function logExercise(userId, exercise) {
     try {
-        const docRef = await addDoc(collection(db, "Exercises"), {...exercise, userId});
+        const docRef = await addDoc(collection(db, "Exercises"), { ...exercise, userId });
     } catch (error) {
         throw new Error("Error:" + error.message);
     }
@@ -80,14 +81,6 @@ export async function deleteExercise(exerciseId) {
         throw new Error("Error:" + error.message);
     }
 };
-
-// Check if a user id exists
-export async function checkUserExists(userId) {
-    const docRef = doc(db, "Users", userId);
-    const docSnap = await getDoc(docRef);
-    const exists = docSnap.exists()
-    return exists;
-}
 
 // Get user by id
 export async function fetchUser(userId) {
@@ -114,5 +107,35 @@ export async function updateUserPreferences(userId, preferences) {
         });
     } catch (error) {
         throw new Error("Error:" + error.message);
+    }
+}
+
+// Check if a user id exists
+export async function checkUserExists(userId) {
+    const docRef = doc(db, "Users", userId);
+    const docSnap = await getDoc(docRef);
+    const exists = docSnap.exists()
+    return exists;
+}
+
+// Generate a new user id
+export async function createUser() {
+    try {
+        const nanoidBase32 = customAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', 8);
+
+        // Ensure the generated user ID doesn't already exist
+        let exists = true;
+        let id;
+        while (exists) {
+            id = nanoidBase32(); // 8-character Base32 ID
+            exists = await checkUserExists(id);
+        }
+
+        const user = { "id": id, "preferences": { "darkMode": false, "units": "lb" } };
+        const docRef = doc(collection(db, 'Users'), id);
+        await setDoc(docRef, user);
+        return id;
+    } catch (error) {
+        console.error('Error adding document: ', error);
     }
 }

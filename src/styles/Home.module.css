@@ -431,3 +431,94 @@
   border-color: yellowgreen;
   background-color: rgba(17, 116, 192, 0.3); 
 }
+
+.getStartedContainer {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px;
+  font-size: 16px;
+  /* color: #1E1E1E; */
+}
+
+.getStartedButton {
+  background-color: transparent;
+  color: black;
+  border: solid 1px black;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; 
+  box-shadow: none;
+  padding: 16px;
+  height: 36px;
+  border-radius: 0;
+}
+
+.getStartedButton:hover {
+  background-color: #1e1e1e05;
+}
+
+.getStartedButton:hover::after {
+  content: "→";
+  margin-left: 8px;
+  transition: margin 0.5s ease-in-out;
+}
+
+.getStartedButton:disabled, .getStartedButton:disabled:hover {
+  background-color: rgba(128, 128, 128, 0.15);
+  color: rgba(128, 128, 128, 0.50);
+  border: solid 0.5px rgba(128, 128, 128, 0.25);
+  font-weight: normal;
+  cursor: not-allowed;
+}
+
+.getStartedButton:disabled::after {
+  content: "";
+  margin-left: 0;
+}
+
+.onboardingContainer {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: solid 1px;
+  font-size: 16px;
+  background: linear-gradient(135deg, #f0f9ff50, #a1c4fd50, #c2e9fb50);
+
+}
+
+.appLink {
+  text-decoration: underline dashed;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.appLink:hover {
+  text-decoration: underline wavy;
+  font-weight: bold;
+}
+
+.copyAppLinkButton {
+  font-size: small;
+  background: none;
+  border: solid 1px;
+  padding: 2px;
+  height: 24px;
+  width: 24px;
+  justify-content: space-around;
+  background: transparent;
+}
+
+.copyAppLinkButton:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.poLink, .poLink:visited  {
+  color: #0000EE; 
+  text-decoration: none;
+}

@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
+import BlockLoader from './BlockLoader';
 
 const UserContext = createContext();
 
@@ -100,22 +101,3 @@ export default function UserProvider({ children, userId }) {
 };
 
 export const useUser = () => useContext(UserContext);
-
-function BlockLoader(props) {
-    const blocks = ['⣾', '⣽', '⣻', '⢿', '⡿', '⣟', '⣯', '⣷'];
-    const [index, setIndex] = useState(0);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setIndex((prevIndex) => (prevIndex + 1) % blocks.length);
-        }, 100);
-
-        return () => clearInterval(interval);
-    }, [blocks.length]);
-
-    return (
-        <span>
-            {blocks[index]}
-        </span>
-    );
-};
