@@ -86,9 +86,7 @@ export default function Home() {
                 </Button>
             </div>
         )
-
     }
-    
 
     return (
         <div className={styles.page}>

@@ -12,7 +12,19 @@ export default function handler(req, res) {
       background_color: "#FFFFFF",
       start_url: `/${userId}`,
       display: "standalone",
-      orientation: "portrait"
+      orientation: "portrait",
+      icons: [
+        {
+          src: "/icon.jpeg",
+          sizes: "1536x1536",
+          type: "image/jpeg"
+        },
+        {
+          src: "/favicon.ico",
+          sizes: "48x48",
+          type: "image/x-icon"
+        }
+      ]
     };
   
     res.setHeader("Content-Type", "application/json");
