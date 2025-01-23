@@ -443,34 +443,36 @@
 
 .getStartedButton {
   background-color: transparent;
-  color: black;
-  border: solid 1px black;
-  font-weight: bold;
+  padding: 12px;
   font-size: 16px;
+  color: black;  
+  border: none;
+  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center; 
   box-shadow: none;
-  padding: 16px;
   height: 36px;
   border-radius: 0;
 }
 
-.getStartedButton:hover {
-  background-color: #1e1e1e05;
+@keyframes arrowMove {
+  0% { margin-left: 8px; }
+  50% { margin-left: 12px; }
+  100% { margin-left: 8px; }
 }
 
-.getStartedButton:hover::after {
+.getStartedButton::after {
   content: "→";
   margin-left: 8px;
-  transition: margin 0.5s ease-in-out;
+  animation: arrowMove 0.8s infinite ease-in-out;
 }
 
 .getStartedButton:disabled, .getStartedButton:disabled:hover {
-  background-color: rgba(128, 128, 128, 0.15);
+  /* background-color: rgba(128, 128, 128, 0.15); */
   color: rgba(128, 128, 128, 0.50);
-  border: solid 0.5px rgba(128, 128, 128, 0.25);
+  /* border: solid 0.5px rgba(128, 128, 128, 0.25); */
   font-weight: normal;
   cursor: not-allowed;
 }
@@ -478,6 +480,7 @@
 .getStartedButton:disabled::after {
   content: "";
   margin-left: 0;
+  animation: none;
 }
 
 .onboardingContainer {

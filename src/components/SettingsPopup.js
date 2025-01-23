@@ -4,7 +4,7 @@ import { Button } from "primereact/button";
 import { useUser } from './UserProvider';
 import { Dropdown } from 'primereact/dropdown';
 import styles from "@/styles/Home.module.css";
-import { updateUserPreferences } from '@/utils/firebase';
+import { updateUserPreferences, fetchAllData } from '@/utils/firebase';
 
 export default function SettingsPopup(props) {
     const [visible, setVisible] = useState(false);
@@ -93,6 +93,36 @@ export default function SettingsPopup(props) {
         }
     };
 
+    const renderExportDataButton = () => {
+        const handleClick = () => {
+            const userId = user.id;
+            fetchAllData(userId, (data) => {
+                const jsonData = JSON.stringify(data, null, 2);
+                const blob = new Blob([jsonData], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+        
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `gym-rat-data-${userId}.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url); 
+            });
+        };
+        
+        return (
+            <Button 
+                onClick={handleClick} 
+                style={{ all: 'unset', cursor: 'pointer' }}
+            >
+                <span style={{  textDecoration: 'underline', textUnderlineOffset: '8px', textDecorationStyle: 'dashed' }}>
+                    Export my data →
+                </span>
+            </Button>
+        );
+    }    
+
     return (
         <>
             <Button className={styles.headerButton} style={{ minWidth: '52.5px', aspectRatio: 1 }} onClick={() => setVisible(true)}>
@@ -108,6 +138,7 @@ export default function SettingsPopup(props) {
                 <div style={{ width: "100%", padding: "24px", display: 'flex', flexDirection: 'column', gap: '24px' }} >
                     {renderCopyUserIdButton()}
                     {renderUserPreferencesSettings()}
+                    {renderExportDataButton()}
                 </div>
             </Dialog>
 
