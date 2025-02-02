@@ -15,7 +15,7 @@ export default function handler(req, res) {
       orientation: "portrait",
       icons: [
         {
-          src: "/icon.jpeg",
+          src: "/icon.jpg",
           sizes: "1536x1536",
           type: "image/jpeg"
         },
